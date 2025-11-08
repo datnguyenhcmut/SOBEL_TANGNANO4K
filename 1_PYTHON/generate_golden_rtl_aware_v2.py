@@ -179,16 +179,23 @@ def generate_vectors_rtl_optimized(width: int, height: int, seed: int):
             else:
                 next_col_addr = col_addr + 1
         
-        # Pipeline advance (sequential - end of cycle)
-        # All registers update simultaneously at posedge
-        pixel_in_d2 = pixel_in_d1
-        pixel_in_d1 = pixel_in
+        # Pipeline advance (model Verilog non-blocking: read all RHS first)
+        old_pixel_valid_d1 = pixel_valid_d1
+        
         pixel_valid_d2 = pixel_valid_d1
         pixel_valid_d1 = pixel_valid
-        col_addr_d2 = col_addr_d1
-        col_addr_d1 = col_addr  # Gets OLD value of col_addr
-        row_count_d2 = row_count_d1
-        row_count_d1 = row_count
+        
+        # d2 stage: conditional on OLD pixel_valid_d1 (match RTL)
+        if old_pixel_valid_d1:
+            pixel_in_d2 = pixel_in_d1
+            col_addr_d2 = col_addr_d1
+            row_count_d2 = row_count_d1
+        
+        # d1 stage: conditional on pixel_valid (match RTL)
+        if pixel_valid:
+            pixel_in_d1 = pixel_in
+            col_addr_d1 = col_addr
+            row_count_d1 = row_count
         
         # Update col_addr after pipeline captures old value
         col_addr = next_col_addr
