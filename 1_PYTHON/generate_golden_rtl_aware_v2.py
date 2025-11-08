@@ -164,11 +164,13 @@ def generate_vectors_rtl_optimized(width: int, height: int, seed: int):
             line1_q = line1_mem[col_addr_d1]
             line2_q = line2_mem[col_addr_d1]
         
-        # BRAM write (cascade pattern)
+        # BRAM write (cascade pattern) - FIXED: use _q outputs, not direct mem access!
         if pixel_valid:
-            line2_mem[col_addr] = line1_mem[col_addr]
-            line1_mem[col_addr] = line0_mem[col_addr]
             line0_mem[col_addr] = pixel_in
+        if pixel_valid_d1:
+            line1_mem[col_addr_d1] = line0_q  # Use BRAM output!
+        if pixel_valid_d2:
+            line2_mem[col_addr_d2] = line1_q  # Use BRAM output!
         
         # Address increment (happens in same cycle, before pipeline advance)
         # RTL: col_addr simply increments 0 → WIDTH-1 → 0 continuously
