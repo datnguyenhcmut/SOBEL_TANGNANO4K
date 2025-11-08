@@ -1,0 +1,89 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds}
+
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!20, font=\small]
+\tikzstyle{data} = [rectangle, rounded corners, minimum width=2.5cm, minimum height=0.8cm, text centered, draw=black, fill=green!20, font=\small]
+\tikzstyle{script} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!20, font=\small]
+\tikzstyle{arrow} = [thick,->,>=Stealth]
+
+\begin{document}
+
+\begin{tikzpicture}[node distance=2cm]
+
+% Stage 1: Input Preparation
+\node (video_source) [data] {Video nguồn\\{\tiny (MP4/PNG frames)}};
+\node (prep_script) [script, below=1.5cm of video_source] {prep\_video\_rgb565.py\\{\tiny Python Script}};
+\node (rgb_stream) [data, below=1.5cm of prep_script] {video\_in.rgb\\{\tiny RGB565 binary}};
+\node (metadata) [data, right=0.5cm of rgb_stream] {video\_meta.txt\\{\tiny frames/width/height}};
+
+% Stage 2: RTL Simulation
+\node (testbench) [process, below=2cm of rgb_stream] {tb\_sobel\_video.v\\{\tiny Verilog Testbench}};
+\node (sobel_rtl) [process, below=1.5cm of testbench] {sobel\_processor\\{\tiny RTL Pipeline}};
+\node (rtl_output) [data, below=1.5cm of sobel_rtl] {video\_out.rgb\\{\tiny RTL output stream}};
+
+% Stage 3: Software Reference
+\node (compare_script) [script, right=4cm of testbench] {compare\_sobel\_output.py\\{\tiny Python Script}};
+\node (sw_reference) [process, below=1cm of compare_script] {Sobel Reference Model\\{\tiny NumPy/OpenCV}};
+
+% Stage 4: Results
+\node (json_report) [data, below=2cm of compare_script] {video\_report.json\\{\tiny Metrics}};
+\node (diff_video) [data, right=0.5cm of json_report] {video\_compare.mp4\\{\tiny Visualization}};
+
+% RTL Modules (inset)
+\node (rgb2gray) [process, minimum width=2cm, minimum height=0.6cm, below left=0.3cm and -1cm of sobel_rtl, font=\tiny] {rgb\_to\_gray};
+\node (linebuf) [process, minimum width=2cm, minimum height=0.6cm, below=0.2cm of rgb2gray, font=\tiny] {line\_buffer};
+\node (kernel) [process, minimum width=2cm, minimum height=0.6cm, below=0.2cm of linebuf, font=\tiny] {sobel\_kernel};
+\node (magnitude) [process, minimum width=2cm, minimum height=0.6cm, below=0.2cm of kernel, font=\tiny] {edge\_mag};
+
+% Arrows - Stage 1
+\draw [arrow] (video_source) -- (prep_script);
+\draw [arrow] (prep_script) -- (rgb_stream);
+\draw [arrow] (prep_script) -- (metadata);
+
+% Arrows - Stage 2
+\draw [arrow] (rgb_stream) -- (testbench);
+\draw [arrow] (metadata) |- (testbench);
+\draw [arrow] (testbench) -- (sobel_rtl);
+\draw [arrow] (sobel_rtl) -- (rtl_output);
+
+% Arrows - Stage 3
+\draw [arrow] (rgb_stream.east) -| ([xshift=1cm]rgb_stream.east) |- (compare_script.west);
+\draw [arrow] (rtl_output.east) -| ([xshift=1.5cm]rtl_output.east) |- (compare_script.south);
+\draw [arrow] (metadata.east) -| (compare_script.north);
+\draw [arrow] (compare_script) -- (sw_reference);
+
+% Arrows - Stage 4
+\draw [arrow] (sw_reference) -- (json_report);
+\draw [arrow] (sw_reference) -- (diff_video);
+
+% RTL Pipeline connections
+\draw [arrow, dashed] (sobel_rtl.west) -| (rgb2gray.north);
+\draw [arrow, dashed] (rgb2gray) -- (linebuf);
+\draw [arrow, dashed] (linebuf) -- (kernel);
+\draw [arrow, dashed] (kernel) -- (magnitude);
+
+% Background boxes
+\begin{scope}[on background layer]
+    \node [draw=blue!50, thick, dashed, rounded corners, fit=(video_source) (prep_script) (rgb_stream) (metadata), fill=blue!5, label=above:{\textbf{Giai đoạn 1: Chuẩn bị dữ liệu}}] {};
+    
+    \node [draw=red!50, thick, dashed, rounded corners, fit=(testbench) (sobel_rtl) (rtl_output) (rgb2gray) (magnitude), fill=red!5, label=above:{\textbf{Giai đoạn 2: Mô phỏng RTL}}] {};
+    
+    \node [draw=green!50, thick, dashed, rounded corners, fit=(compare_script) (sw_reference), fill=green!5, label=above:{\textbf{Giai đoạn 3: So sánh}}] {};
+    
+    \node [draw=purple!50, thick, dashed, rounded corners, fit=(json_report) (diff_video), fill=purple!5, label=above:{\textbf{Giai đoạn 4: Kết quả}}] {};
+\end{scope}
+
+% Legend
+\node [below=0.5cm of magnitude, font=\tiny, align=left] {
+    \textbf{Chú thích:}\\
+    \tikz\node[data, minimum width=0.8cm, minimum height=0.4cm] {}; Data files\\
+    \tikz\node[script, minimum width=0.8cm, minimum height=0.4cm] {}; Python scripts\\
+    \tikz\node[process, minimum width=0.8cm, minimum height=0.4cm] {}; RTL/Process
+};
+
+\end{tikzpicture}
+
+\end{document}

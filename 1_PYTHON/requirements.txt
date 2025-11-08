@@ -1,0 +1,6 @@
+# Python Requirements for Sobel Edge Detection Study
+# Tang Nano 4K FPGA Project
+
+numpy>=1.21.0
+opencv-python>=4.5.0  
+matplotlib>=3.5.0

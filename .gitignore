@@ -1,0 +1,68 @@
+# Simulation artifacts
+sim/*.vvp
+sim/*.vcd
+sim/*.log
+sim/a.out
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg-info/
+dist/
+build/
+
+# Data files (large videos - uncomment to exclude if needed)
+# data/*.mp4
+data/*.rgb
+data/*.json
+data/*.avi
+
+# LaTeX temporary files
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+docs/*.fdb_latexmk
+docs/*.fls
+docs/*.bbl
+docs/*.blg
+docs/*.pdf
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# FPGA synthesis files (Gowin IDE)
+verilog/impl/**/*.rpt
+verilog/impl/**/*.log
+verilog/impl/**/*.vo
+verilog/impl/**/*.vg
+verilog/*.bit
+verilog/*.bin
+verilog/*.fs
+
+# Test results and temporary files
+sim/golden/*.mem
+random_log*.txt
+sim_random.log
+tmp_*.py
+tmp_*.txt
+
+# Ignore potentially large video files in root
+*.mp4
+*.avi
+*.mov

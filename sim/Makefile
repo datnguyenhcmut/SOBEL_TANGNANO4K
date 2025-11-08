@@ -1,0 +1,77 @@
+# Makefile for Sobel Testing (iverilog compatible)
+
+IVERILOG = iverilog
+VVP = vvp
+GTKWAVE = gtkwave
+
+VERILOG_DIR = ../verilog/sobel
+SRC_FILES = $(VERILOG_DIR)/bram.v \
+			$(VERILOG_DIR)/rgb_to_gray.v \
+			$(VERILOG_DIR)/line_buffer.v \
+			$(VERILOG_DIR)/sobel_kernel.v \
+			$(VERILOG_DIR)/edge_mag.v \
+			$(VERILOG_DIR)/sobel_processor.v
+
+TB_FILE = tb_sobel_processor.v
+SIM_OUT = sim_sobel.vvp
+VCD_OUT = sobel_wave.vcd
+
+VIDEO_TB = tb_sobel_video.v
+VIDEO_SIM = sim_video.vvp
+DATA_DIR = ../data
+VIDEO_IN_RGB = $(DATA_DIR)/video_in.rgb
+VIDEO_META = $(DATA_DIR)/video_meta.txt
+VIDEO_OUT_RGB = $(DATA_DIR)/video_out.rgb
+VIDEO_REPORT = $(DATA_DIR)/video_report.json
+VIDEO_DIFF = $(DATA_DIR)/video_compare.mp4
+
+.PHONY: all compile run clean view help random golden video
+
+all: compile run
+
+compile:
+	@echo "=== Compiling Sobel (iverilog) ==="
+	$(IVERILOG) -g2012 -Wall -s tb_sobel_processor -o $(SIM_OUT) $(SRC_FILES) $(TB_FILE)
+	@echo "Compile successful!"
+
+run: compile
+	@echo "=== Running Simulation ==="
+	$(VVP) $(SIM_OUT)
+
+# Randomized self-checking testbench
+random:
+	@echo "=== Compiling tb_sobel_random ==="
+	$(IVERILOG) -g2012 -Wall -s tb_sobel_random -o sim_random.vvp $(SRC_FILES) tb_sobel_random.v
+	@echo "=== Running tb_sobel_random ==="
+	$(VVP) sim_random.vvp
+
+# Golden-vector check (expects mem files under sim/golden)
+golden:
+	@echo "=== Compiling tb_sobel_golden_fix ==="
+	$(IVERILOG) -g2012 -Wall -s tb_sobel_golden_fix -o sim_golden.vvp $(SRC_FILES) tb_sobel_golden_fix.v
+	@echo "=== Running tb_sobel_golden_fix ==="
+	$(VVP) sim_golden.vvp
+
+video:
+	@echo "=== Preparing video stimulus ==="
+	python ../scripts/prep_video_rgb565.py --output-dir $(DATA_DIR)
+	@echo "=== Compiling tb_sobel_video ==="
+	$(IVERILOG) -g2012 -Wall -s tb_sobel_video -o $(VIDEO_SIM) $(SRC_FILES) $(VIDEO_TB)
+	@echo "=== Running tb_sobel_video ==="
+	$(VVP) $(VIDEO_SIM)
+	@echo "=== Comparing video output ==="
+	python ../scripts/compare_sobel_output.py --input $(VIDEO_IN_RGB) --output $(VIDEO_OUT_RGB) --meta $(VIDEO_META) --report $(VIDEO_REPORT) --diff-video $(VIDEO_DIFF)
+
+clean:
+	powershell -NoLogo -NoProfile -Command "Remove-Item -Force -ErrorAction SilentlyContinue '$(SIM_OUT)','sim_random.vvp','sim_golden.vvp','$(VCD_OUT)','$(VIDEO_SIM)','$(VIDEO_IN_RGB)','$(VIDEO_META)','$(VIDEO_OUT_RGB)','$(VIDEO_REPORT)','$(VIDEO_DIFF)'"
+
+view:
+	$(GTKWAVE) $(VCD_OUT) &
+
+help:
+	@echo "Sobel Test Makefile"
+	@echo "make         - compile and run"
+	@echo "make compile - compile only"
+	@echo "make run     - run simulation"
+	@echo "make clean   - clean up"
+	@echo "make view    - view waveform"
