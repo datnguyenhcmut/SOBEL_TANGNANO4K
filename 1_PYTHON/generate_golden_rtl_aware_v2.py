@@ -170,23 +170,28 @@ def generate_vectors_rtl_optimized(width: int, height: int, seed: int):
             line1_mem[col_addr] = line0_mem[col_addr]
             line0_mem[col_addr] = pixel_in
         
+        # Address increment (happens in same cycle, before pipeline advance)
+        # RTL: col_addr simply increments 0 → WIDTH-1 → 0 continuously
+        next_col_addr = col_addr
+        if pixel_valid:
+            if col_addr == width - 1:
+                next_col_addr = 0
+            else:
+                next_col_addr = col_addr + 1
+        
         # Pipeline advance (sequential - end of cycle)
+        # All registers update simultaneously at posedge
         pixel_in_d2 = pixel_in_d1
         pixel_in_d1 = pixel_in
         pixel_valid_d2 = pixel_valid_d1
         pixel_valid_d1 = pixel_valid
         col_addr_d2 = col_addr_d1
-        col_addr_d1 = col_addr
+        col_addr_d1 = col_addr  # Gets OLD value of col_addr
         row_count_d2 = row_count_d1
         row_count_d1 = row_count
         
-        # Address increment for next cycle
-        if pixel_valid:
-            if c == width - 1:
-                col_addr = 0
-                # row_count already updated above based on current row
-            else:
-                col_addr = c + 1
+        # Update col_addr after pipeline captures old value
+        col_addr = next_col_addr
     
     return frame, expected
 
