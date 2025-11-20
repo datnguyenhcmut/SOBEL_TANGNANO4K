@@ -8,6 +8,7 @@ VERILOG_DIR = ../verilog/sobel
 SRC_FILES = $(VERILOG_DIR)/bram.v \
 			$(VERILOG_DIR)/rgb_to_gray.v \
 			$(VERILOG_DIR)/line_buffer.v \
+			$(VERILOG_DIR)/gaussian_blur.v \
 			$(VERILOG_DIR)/sobel_kernel.v \
 			$(VERILOG_DIR)/edge_mag.v \
 			$(VERILOG_DIR)/sobel_processor.v
@@ -48,7 +49,7 @@ random:
 # Golden-vector check (expects mem files under sim/golden)
 golden:
 	@echo "=== Compiling tb_sobel_golden_fix ==="
-	$(IVERILOG) -g2012 -Wall -s tb_sobel_golden_fix -o sim_golden.vvp $(SRC_FILES) tb_sobel_golden_fix.v
+	$(IVERILOG) -g2012 -Wall -s tb_sobel_golden_fix -o sim_golden.vvp -f golden_files.txt
 	@echo "=== Running tb_sobel_golden_fix ==="
 	$(VVP) sim_golden.vvp
 
@@ -62,16 +63,45 @@ video:
 	@echo "=== Comparing video output ==="
 	python ../scripts/compare_sobel_output.py --input $(VIDEO_IN_RGB) --output $(VIDEO_OUT_RGB) --meta $(VIDEO_META) --report $(VIDEO_REPORT) --diff-video $(VIDEO_DIFF)
 
+# ModelSim targets
+msim:
+	@echo "=== ModelSim: Basic testbench ==="
+	vsim -c -do "do run_modelsim.do; quit -f"
+
+msim-random:
+	@echo "=== ModelSim: Random testbench ==="
+	vsim -c -do "do run_random_modelsim.do; quit -f"
+
+msim-golden:
+	@echo "=== ModelSim: Golden testbench ==="
+	vsim -c -do "do run_golden_modelsim.do; quit -f"
+
+msim-gui:
+	@echo "=== ModelSim GUI ==="
+	vsim -gui -do run_modelsim.do
+
 clean:
-	powershell -NoLogo -NoProfile -Command "Remove-Item -Force -ErrorAction SilentlyContinue '$(SIM_OUT)','sim_random.vvp','sim_golden.vvp','$(VCD_OUT)','$(VIDEO_SIM)','$(VIDEO_IN_RGB)','$(VIDEO_META)','$(VIDEO_OUT_RGB)','$(VIDEO_REPORT)','$(VIDEO_DIFF)'"
+	powershell -NoLogo -NoProfile -Command "Remove-Item -Force -ErrorAction SilentlyContinue '$(SIM_OUT)','sim_random.vvp','sim_golden.vvp','$(VCD_OUT)','$(VIDEO_SIM)','$(VIDEO_IN_RGB)','$(VIDEO_META)','$(VIDEO_OUT_RGB)','$(VIDEO_REPORT)','$(VIDEO_DIFF)','work','*.wlf','transcript'"
 
 view:
 	$(GTKWAVE) $(VCD_OUT) &
 
 help:
 	@echo "Sobel Test Makefile"
+	@echo "=== Icarus Verilog ==="
 	@echo "make         - compile and run"
 	@echo "make compile - compile only"
 	@echo "make run     - run simulation"
+	@echo "make random  - random test"
+	@echo "make golden  - golden test"
+	@echo "make video   - video test"
+	@echo ""
+	@echo "=== ModelSim ==="
+	@echo "make msim         - ModelSim basic test (batch)"
+	@echo "make msim-random  - ModelSim random test (batch)"
+	@echo "make msim-golden  - ModelSim golden test (batch)"
+	@echo "make msim-gui     - ModelSim GUI mode"
+	@echo ""
+	@echo "=== Utilities ==="
 	@echo "make clean   - clean up"
 	@echo "make view    - view waveform"

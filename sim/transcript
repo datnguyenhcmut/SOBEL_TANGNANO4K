@@ -1,0 +1,94 @@
+# do run_modelsim.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:14:57 on Nov 19,2025
+# vlog -sv "+incdir+../verilog/sobel" ../verilog/sobel/bram.v ../verilog/sobel/rgb_to_gray.v ../verilog/sobel/line_buffer.v ../verilog/sobel/gaussian_blur.v ../verilog/sobel/sobel_kernel.v ../verilog/sobel/edge_mag.v ../verilog/sobel/sobel_processor.v tb_sobel_processor.v 
+# -- Compiling module bram
+# -- Compiling module rgb_to_gray
+# -- Compiling module line_buffer
+# -- Compiling module gaussian_blur
+# -- Compiling module sobel_kernel
+# -- Compiling module edge_mag
+# -- Compiling module sobel_processor
+# -- Compiling module tb_sobel_processor
+# 
+# Top level modules:
+# 	tb_sobel_processor
+# End time: 15:14:57 on Nov 19,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.tb_sobel_processor 
+# Start time: 15:14:57 on Nov 19,2025
+# Loading sv_std.std
+# Loading work.tb_sobel_processor
+# Loading work.sobel_processor
+# Loading work.rgb_to_gray
+# Loading work.line_buffer
+# Loading work.bram
+# Loading work.gaussian_blur
+# Loading work.sobel_kernel
+# Loading work.edge_mag
+# === Sobel Processor Test ===
+# [TEST 1] Vertical Edge Pattern
+# Waiting for Sobel output...
+# [TEST 2] Bypass Mode
+# [13100000] Valid output: a5a5
+# [13140000] Valid output: a5a5
+# [13180000] Valid output: a5a5
+# [13220000] Valid output: a5a5
+# [13260000] Valid output: a5a5
+# PASS: Bypass mode works
+# === Test Complete ===
+# [13300000] Valid output: a5a5
+# [13340000] Valid output: a5a5
+# [13380000] Valid output: a5a5
+# [13420000] Valid output: a5a5
+# [13460000] Valid output: a5a5
+# [13500000] Valid output: a5a5
+# [13540000] Valid output: a5a5
+# [13580000] Valid output: a5a5
+# [13620000] Valid output: a5a5
+# [13660000] Valid output: a5a5
+# [13700000] Valid output: a5a5
+# [13740000] Valid output: a5a5
+# [13780000] Valid output: a5a5
+# [13820000] Valid output: a5a5
+# [13860000] Valid output: a5a5
+# [13900000] Valid output: a5a5
+# [13940000] Valid output: a5a5
+# [13980000] Valid output: a5a5
+# [14020000] Valid output: a5a5
+# [14060000] Valid output: a5a5
+# [14100000] Valid output: a5a5
+# [14140000] Valid output: a5a5
+# [14180000] Valid output: a5a5
+# [14220000] Valid output: a5a5
+# [14260000] Valid output: a5a5
+# [14300000] Valid output: a5a5
+# [14340000] Valid output: a5a5
+# [14380000] Valid output: a5a5
+# [14420000] Valid output: a5a5
+# [14460000] Valid output: a5a5
+# [14500000] Valid output: a5a5
+# [14540000] Valid output: a5a5
+# [14580000] Valid output: a5a5
+# [14620000] Valid output: a5a5
+# [14660000] Valid output: a5a5
+# [14700000] Valid output: a5a5
+# [14740000] Valid output: a5a5
+# [14780000] Valid output: a5a5
+# [14820000] Valid output: a5a5
+# [14860000] Valid output: a5a5
+# [14900000] Valid output: a5a5
+# [14940000] Valid output: a5a5
+# [14980000] Valid output: a5a5
+# [15020000] Valid output: a5a5
+# [15060000] Valid output: a5a5
+# [15100000] Valid output: a5a5
+# [15140000] Valid output: a5a5
+# [15180000] Valid output: a5a5
+# [15220000] Valid output: a5a5
+# [15260000] Valid output: a5a5
+# ** Note: $finish    : tb_sobel_processor.v(62)
+#    Time: 15280 ns  Iteration: 0  Instance: /tb_sobel_processor
+# End time: 15:14:57 on Nov 19,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

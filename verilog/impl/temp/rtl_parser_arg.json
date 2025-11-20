@@ -2,71 +2,91 @@
  "Device" : "GW1NSR-4C",
  "Files" : [
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/dvi_tx/dvi_tx.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/bram.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/gowin_pllvr/GW_PLLVR.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/edge_mag.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/gowin_pllvr/TMDS_PLLVR.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/gaussian_blur.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/hyperram_memory_interface/hyperram_memory_interface.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/ov2640/I2C_Interface.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/rgb_to_gray.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/ov2640/OV2640_Controller.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_kernel.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/ov2640/OV2640_Registers.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/syn_code/syn_gen.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_rx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/testpattern.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_top.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/video_frame_buffer/video_frame_buffer.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/video_top.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/dvi_tx/dvi_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/sobel/edge_mag.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/gowin_pllvr/GW_PLLVR.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/sobel/line_buffer.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/gowin_pllvr/TMDS_PLLVR.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/sobel/rgb_to_gray.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/hyperram_memory_interface/hyperram_memory_interface.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/sobel/sobel_kernel.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/I2C_Interface.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/sobel/sobel_processor.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Controller.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "D:/DACN/Sobel_project/verilog/src/gowin_sdpb/gowin_sdpb.v",
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Registers.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/syn_code/syn_gen.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/system_top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/testpattern.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_frame_buffer/video_frame_buffer.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
    "Type" : "verilog"
   }
  ],
@@ -74,7 +94,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "D:/DACN/Sobel_project/verilog/impl/temp/rtl_parser.result",
+ "ResultFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/impl/temp/rtl_parser.result",
  "Top" : "video_top",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"

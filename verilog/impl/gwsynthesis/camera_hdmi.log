@@ -1,60 +1,80 @@
 GowinSynthesis start
 Running parser ...
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\dvi_tx\dvi_tx.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\gowin_pllvr\GW_PLLVR.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\gowin_pllvr\TMDS_PLLVR.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\I2C_Interface.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\OV2640_Controller.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\OV2640_Registers.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\syn_code\syn_gen.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\testpattern.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\video_frame_buffer\video_frame_buffer.v'
-Analyzing Verilog file 'D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v'
-Undeclared symbol 'sys_resetn', assumed default net type 'wire'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":122)
-Undeclared symbol 'key_flag', assumed default net type 'wire'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":216)
-WARN  (EX3628) : Redeclaration of ANSI port 'key_flag' is not allowed("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":418)
-WARN  (EX3801) : Parameter 'count_ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":402)
-WARN  (EX3801) : Parameter 'count_20ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":404)
-WARN  (EX3801) : Parameter 'count_500ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":405)
-Compiling module 'video_top'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":1)
-Compiling module 'testpattern'("D:\DACN\TangNano-4K-example\camera_hdmi\src\testpattern.v":17)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_total'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":127)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_sync'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":128)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_bporch'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":129)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_res'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":130)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_total'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":131)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_sync'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":132)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_bporch'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":133)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_res'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":134)
-WARN  (EX3791) : Expression size 11 truncated to fit in target size 10("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":157)
-Compiling module 'Reset_Sync'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":373)
-Compiling module 'OV2640_Controller'("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\OV2640_Controller.v":1)
-Compiling module 'OV2640_Registers'("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\OV2640_Registers.v":1)
-WARN  (EX3791) : Expression size 10 truncated to fit in target size 9("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\OV2640_Registers.v":36)
-Compiling module 'I2C_Interface(SID=8'h60)'("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\I2C_Interface.v":14)
-WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\I2C_Interface.v":81)
-WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\DACN\TangNano-4K-example\camera_hdmi\src\ov2640\I2C_Interface.v":166)
-Compiling module 'key_flag'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":392)
-WARN  (EX3791) : Expression size 31 truncated to fit in target size 30("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":424)
-Compiling module 'Video_Frame_Buffer_Top'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_frame_buffer\video_frame_buffer.v":3014)
-Compiling module '**'("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_frame_buffer\video_frame_buffer.v":3013)
-Compiling module 'GW_PLLVR'("D:\DACN\TangNano-4K-example\camera_hdmi\src\gowin_pllvr\GW_PLLVR.v":8)
-Compiling module 'HyperRAM_Memory_Interface_Top'("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3735)
-Compiling module '**'("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-WARN  (EX1998) : Net '**' does not have a driver("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-Compiling module 'syn_gen'("D:\DACN\TangNano-4K-example\camera_hdmi\src\syn_code\syn_gen.v":1)
-Compiling module 'TMDS_PLLVR'("D:\DACN\TangNano-4K-example\camera_hdmi\src\gowin_pllvr\TMDS_PLLVR.v":9)
-Compiling module 'DVI_TX_Top'("D:\DACN\TangNano-4K-example\camera_hdmi\src\dvi_tx\dvi_tx.v":1048)
-Compiling module '**'("D:\DACN\TangNano-4K-example\camera_hdmi\src\dvi_tx\dvi_tx.v":1047)
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bram.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\edge_mag.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\gaussian_blur.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\line_buffer.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\rgb_to_gray.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_kernel.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_processor.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\uart_rx.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\uart_top.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\uart_tx.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\gowin_pllvr\GW_PLLVR.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\gowin_pllvr\TMDS_PLLVR.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\I2C_Interface.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Controller.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Registers.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\syn_code\syn_gen.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\testpattern.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_frame_buffer\video_frame_buffer.v'
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v'
+Undeclared symbol 'sys_resetn', assumed default net type 'wire'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":123)
+Undeclared symbol 'key_flag', assumed default net type 'wire'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":217)
+WARN  (EX3628) : Redeclaration of ANSI port 'key_flag' is not allowed("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":447)
+WARN  (EX3801) : Parameter 'count_ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":431)
+WARN  (EX3801) : Parameter 'count_20ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":433)
+WARN  (EX3801) : Parameter 'count_500ms' becomes localparam in 'key_flag' with formal parameter declaration list("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":434)
+Analyzing Verilog file 'D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v'
+Compiling module 'video_top'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":1)
+Compiling module 'testpattern'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\testpattern.v":17)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_total'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":128)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_sync'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":129)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_bporch'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":130)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_h_res'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":131)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_total'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":132)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_sync'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":133)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_bporch'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":134)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 12 for port 'I_v_res'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":135)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 10("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":158)
+Compiling module 'Reset_Sync'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":402)
+Compiling module 'OV2640_Controller'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Controller.v":1)
+Compiling module 'OV2640_Registers'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Registers.v":1)
+WARN  (EX3791) : Expression size 10 truncated to fit in target size 9("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Registers.v":36)
+Compiling module 'I2C_Interface(SID=8'h60)'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\I2C_Interface.v":14)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\I2C_Interface.v":81)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\I2C_Interface.v":166)
+Compiling module 'key_flag'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":421)
+WARN  (EX3791) : Expression size 31 truncated to fit in target size 30("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":456)
+Compiling module 'Video_Frame_Buffer_Top'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_frame_buffer\video_frame_buffer.v":3014)
+Compiling module '**'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_frame_buffer\video_frame_buffer.v":3013)
+Compiling module 'GW_PLLVR'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\gowin_pllvr\GW_PLLVR.v":8)
+Compiling module 'HyperRAM_Memory_Interface_Top'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3735)
+Compiling module '**'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX1998) : Net '**' does not have a driver("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+Compiling module 'syn_gen'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\syn_code\syn_gen.v":1)
+Compiling module 'sobel_processor'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_processor.v":10)
+Compiling module 'rgb_to_gray'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\rgb_to_gray.v":19)
+Compiling module 'line_buffer'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\line_buffer.v":10)
+Compiling module 'bram'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bram.v":9)
+Extracting RAM for identifier 'mem'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bram.v":28)
+WARN  (EX3858) : System task 'display' is ignored for synthesis("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\line_buffer.v":284)
+Compiling module 'gaussian_blur'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\gaussian_blur.v":10)
+Compiling module 'sobel_kernel'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_kernel.v":11)
+Compiling module 'edge_mag'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\edge_mag.v":11)
+Compiling module 'TMDS_PLLVR'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\gowin_pllvr\TMDS_PLLVR.v":9)
+Compiling module 'DVI_TX_Top'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dvi_tx\dvi_tx.v":1048)
+Compiling module '**'("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dvi_tx\dvi_tx.v":1047)
 NOTE  (EX0101) : Current top module is "video_top"
-WARN  (EX0211) : The output port "rd_data[10]" of module "~hpram_wd.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-WARN  (EX0211) : The output port "rd_data[5]" of module "~hpram_wd.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-WARN  (EX0211) : The output port "rd_data[10]" of module "~hpram_lane.HyperRAM_Memory_Interface_Top__Z1" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-WARN  (EX0211) : The output port "rd_data[5]" of module "~hpram_lane.HyperRAM_Memory_Interface_Top__Z1" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
-WARN  (EX0211) : The output port "addr_d[19]" of module "~hpram_init.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\DACN\TangNano-4K-example\camera_hdmi\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX0211) : The output port "rd_data[10]" of module "~hpram_wd.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX0211) : The output port "rd_data[5]" of module "~hpram_wd.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX0211) : The output port "rd_data[10]" of module "~hpram_lane.HyperRAM_Memory_Interface_Top__Z1" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX0211) : The output port "rd_data[5]" of module "~hpram_lane.HyperRAM_Memory_Interface_Top__Z1" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
+WARN  (EX0211) : The output port "addr_d[19]" of module "~hpram_init.HyperRAM_Memory_Interface_Top_" has no driver, assigning undriven bits to Z, simulation mismatch possible("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\hyperram_memory_interface\hyperram_memory_interface.v":3734)
 [5%] Running netlist conversion ...
-WARN  (CV0020) : Input PIXDATA[3:0] is unused("D:\DACN\TangNano-4K-example\camera_hdmi\src\video_top.v":9)
+WARN  (CV0020) : Input PIXDATA[3:0] is unused("D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v":9)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed
@@ -70,6 +90,6 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-[95%] Generate netlist file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\gwsynthesis\camera_hdmi.vg" completed
-[100%] Generate report file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\gwsynthesis\camera_hdmi_syn.rpt.html" completed
+[95%] Generate netlist file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\gwsynthesis\camera_hdmi.vg" completed
+[100%] Generate report file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\gwsynthesis\camera_hdmi_syn.rpt.html" completed
 GowinSynthesis finish

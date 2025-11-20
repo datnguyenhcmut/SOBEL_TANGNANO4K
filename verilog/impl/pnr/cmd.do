@@ -1,9 +1,9 @@
--d D:\DACN\Sobel_project\verilog\impl\gwsynthesis\camera_hdmi.vg
+-d D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\gwsynthesis\camera_hdmi.vg
 -p GW1NSR-4C-QFN48P-6
 -pn GW1NSR-LV4CQN48PC6/I5
--cst D:\DACN\Sobel_project\verilog\src\dk_video.cst
--cfg D:\DACN\Sobel_project\verilog\impl\pnr\device.cfg
--sdc D:\DACN\Sobel_project\verilog\src\dk_video.sdc
+-cst D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dk_video.cst
+-cfg D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\device.cfg
+-sdc D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dk_video.sdc
 -bit
 -tr
 -ph

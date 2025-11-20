@@ -1,7 +1,7 @@
-Reading netlist file: "D:\DACN\TangNano-4K-example\camera_hdmi\impl\gwsynthesis\camera_hdmi.vg"
-Parsing netlist file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\gwsynthesis\camera_hdmi.vg" completed
+Reading netlist file: "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\gwsynthesis\camera_hdmi.vg"
+Parsing netlist file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\gwsynthesis\camera_hdmi.vg" completed
 Processing netlist completed
-Reading constraint file: "D:\DACN\TangNano-4K-example\camera_hdmi\src\dk_video.cst"
+Reading constraint file: "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\dk_video.cst"
 WARN  (CT1136) : Bank 0 vccio(1.8) is locked by other constraint or embedded port, conflicting BANK_VCCIO set by 'O_led_0_obuf' : IO_TYPE = LVCMOS33 in the same bank
 WARN  (CT1136) : Bank 1 vccio(3.3) is locked by other constraint or embedded port, conflicting BANK_VCCIO set by 'I_rst_n_ibuf' : IO_TYPE = LVCMOS18 in the same bank
 Physical Constraint parsed completed
@@ -26,10 +26,11 @@ Bitstream generation in progress......
 Bitstream generation completed
 Running power analysis......
 [100%] Power analysis completed
-Generate file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\pnr\camera_hdmi.power.html" completed
-Generate file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\pnr\camera_hdmi.pin.html" completed
-Generate file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\pnr\camera_hdmi.rpt.html" completed
-Generate file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\pnr\camera_hdmi.rpt.txt" completed
-Generate file "D:\DACN\TangNano-4K-example\camera_hdmi\impl\pnr\camera_hdmi.tr.html" completed
-Mon Sep 29 11:49:36 2025
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.power.html" completed
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.pin.html" completed
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.rpt.html" completed
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.rpt.txt" completed
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.vo" completed
+Generate file "D:\tangnano4k\SOBEL_TANGNANO4K\verilog\impl\pnr\camera_hdmi.tr.html" completed
+Mon Nov 17 18:42:18 2025
 

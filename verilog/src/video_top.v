@@ -24,6 +24,7 @@ module video_top(
 );
 
 //==================================================
+
 reg  [31:0] run_cnt;
 wire        running;
 
@@ -324,7 +325,7 @@ sobel_processor #(
     .pixel_out(sobel_pixel_out)
 );
 
-wire [15:0] sobel_rgb565   = sobel_pixel_valid ? sobel_pixel_out : 16'h0000;
+wire [15:0] sobel_rgb565   = sobel_pixel_valid ? sobel_pixel_out : off0_syn_data;
 wire [15:0] display_rgb565 = sobel_enable ? sobel_rgb565 : off0_syn_data;
 wire [23:0] display_rgb888 = {
     display_rgb565[15:11], 3'b000,
@@ -445,17 +446,22 @@ end
 
 reg key_flag;
 
+// single always block to manage debounce/count and key_flag with reset
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n)
+    if (!rst_n) begin
         count_20ms_reg <= 'd0;
-    else if(key_input)
-        count_20ms_reg <= count_20ms_reg + 'd1 ;
-    else if(count_20ms_reg >= count_20ms) begin
-            key_flag = ~key_flag;
-            count_20ms_reg <= 'd0;;
+        key_flag <= 1'b0; // default to camera mode after reset
+    end else begin
+        if (key_input) begin
+            count_20ms_reg <= count_20ms_reg + 'd1;
+            if (count_20ms_reg >= count_20ms) begin
+                key_flag <= ~key_flag;
+                count_20ms_reg <= 'd0;
+            end
+        end else begin
+            count_20ms_reg <= 'd0;
+        end
     end
-    else
-        count_20ms_reg <= 'd0;;
 end
 
 endmodule

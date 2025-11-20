@@ -7,10 +7,14 @@
     <FileList>
         <File path="sobel/bram.v" type="file.verilog" enable="1"/>
         <File path="sobel/edge_mag.v" type="file.verilog" enable="1"/>
+        <File path="sobel/gaussian_blur.v" type="file.verilog" enable="1"/>
         <File path="sobel/line_buffer.v" type="file.verilog" enable="1"/>
         <File path="sobel/rgb_to_gray.v" type="file.verilog" enable="1"/>
         <File path="sobel/sobel_kernel.v" type="file.verilog" enable="1"/>
         <File path="sobel/sobel_processor.v" type="file.verilog" enable="1"/>
+        <File path="sobel/uart_rx.v" type="file.verilog" enable="1"/>
+        <File path="sobel/uart_top.v" type="file.verilog" enable="1"/>
+        <File path="sobel/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pllvr/GW_PLLVR.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pllvr/TMDS_PLLVR.v" type="file.verilog" enable="1"/>
@@ -19,6 +23,7 @@
         <File path="src/ov2640/OV2640_Controller.v" type="file.verilog" enable="1"/>
         <File path="src/ov2640/OV2640_Registers.v" type="file.verilog" enable="1"/>
         <File path="src/syn_code/syn_gen.v" type="file.verilog" enable="1"/>
+        <File path="src/system_top.v" type="file.verilog" enable="1"/>
         <File path="src/testpattern.v" type="file.verilog" enable="1"/>
         <File path="src/video_frame_buffer/video_frame_buffer.v" type="file.verilog" enable="1"/>
         <File path="src/video_top.v" type="file.verilog" enable="1"/>

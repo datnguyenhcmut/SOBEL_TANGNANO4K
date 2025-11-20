@@ -1,0 +1,8 @@
+../verilog/sobel/bram.v
+../verilog/sobel/rgb_to_gray.v
+../verilog/sobel/line_buffer.v
+../verilog/sobel/gaussian_blur.v
+../verilog/sobel/sobel_kernel.v
+../verilog/sobel/edge_mag.v
+../verilog/sobel/sobel_processor.v
+tb_sobel_golden_fix.v

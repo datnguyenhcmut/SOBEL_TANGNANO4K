@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="video_top" Register="31" Lut="89" T_Register="1422(31)" T_Alu="402(0)" T_Lut="1716(89)" T_MULTADDALU18X18="2(0)" T_Bsram="9(0)">
- <SubModule name="testpattern_inst" Register="77" Lut="111" T_Register="77(77)" T_Lut="111(111)"/>
+<Module name="video_top" Register="31" Lut="94" T_Register="1463(31)" T_Alu="413(0)" T_Lut="1823(94)" T_MULTADDALU18X18="2(0)" T_Bsram="9(0)">
+ <SubModule name="testpattern_inst" Register="77" Lut="113" T_Register="77(77)" T_Lut="113(113)"/>
  <SubModule name="u_Reset_Sync" Register="4" Alu="4" Lut="2" T_Register="4(4)" T_Alu="4(4)" T_Lut="2(2)"/>
- <SubModule name="u_OV2640_Controller" T_Register="82(0)" T_Alu="8(0)" T_Lut="93(0)" T_Bsram="1(0)">
+ <SubModule name="u_OV2640_Controller" T_Register="82(0)" T_Alu="8(0)" T_Lut="94(0)" T_Bsram="1(0)">
   <SubModule name="LUT" Register="9" Alu="8" Lut="1" Bsram="1" T_Register="9(9)" T_Alu="8(8)" T_Lut="1(1)" T_Bsram="1(1)"/>
-  <SubModule name="I2C" Register="73" Lut="92" T_Register="73(73)" T_Lut="92(92)"/>
+  <SubModule name="I2C" Register="73" Lut="93" T_Register="73(73)" T_Lut="93(93)"/>
  </SubModule>
- <SubModule name="key_flag_inst" Register="32" Lut="68" T_Register="32(32)" T_Lut="68(68)"/>
+ <SubModule name="key_flag_inst" Register="22" Lut="54" T_Register="22(22)" T_Lut="54(54)"/>
  <SubModule name="Video_Frame_Buffer_Top_inst" Register="441" Alu="86" Lut="418" Bsram="4" T_Register="441(441)" T_Alu="86(86)" T_Lut="418(418)" T_Bsram="4(4)"/>
  <SubModule name="GW_PLLVR_inst"/>
  <SubModule name="HyperRAM_Memory_Interface_Top_inst" Register="413" Alu="110" Lut="555" Bsram="1" T_Register="413(413)" T_Alu="110(110)" T_Lut="555(555)" T_Bsram="1(1)"/>
- <SubModule name="syn_gen_inst" Register="35" Lut="78" T_Register="35(35)" T_Lut="78(78)"/>
- <SubModule name="u_sobel_processor" T_Register="234(0)" T_Alu="126(0)" T_Lut="85(0)" T_MULTADDALU18X18="2(0)" T_Bsram="3(0)">
+ <SubModule name="syn_gen_inst" Register="35" Lut="80" T_Register="35(35)" T_Lut="80(80)"/>
+ <SubModule name="u_sobel_processor" T_Register="285(0)" T_Alu="137(0)" T_Lut="196(0)" T_MULTADDALU18X18="2(0)" T_Bsram="3(0)">
   <SubModule name="u_rgb2gray" Register="1" MULTADDALU18X18="2" T_Register="1(1)" T_MULTADDALU18X18="2(2)"/>
-  <SubModule name="u_linebuf" Register="203" Alu="9" Lut="39" T_Register="203(203)" T_Alu="9(9)" T_Lut="39(39)" T_Bsram="3(0)">
-   <SubModule name="line0" Bsram="1" T_Bsram="1(1)"/>
-   <SubModule name="line1" Bsram="1" T_Bsram="1(1)"/>
-   <SubModule name="line2" Bsram="1" T_Bsram="1(1)"/>
+  <SubModule name="u_linebuf" Register="164" Alu="20" Lut="122" T_Register="189(164)" T_Alu="20(20)" T_Lut="149(122)" T_Bsram="3(0)">
+   <SubModule name="line0" Register="9" Lut="9" Bsram="1" T_Register="9(9)" T_Lut="9(9)" T_Bsram="1(1)"/>
+   <SubModule name="line1" Register="8" Lut="9" Bsram="1" T_Register="8(8)" T_Lut="9(9)" T_Bsram="1(1)"/>
+   <SubModule name="line2" Register="8" Lut="9" Bsram="1" T_Register="8(8)" T_Lut="9(9)" T_Bsram="1(1)"/>
   </SubModule>
+  <SubModule name="u_gaussian" Register="65" T_Register="65(65)"/>
   <SubModule name="u_sobel" Register="23" Alu="106" Lut="10" T_Register="23(23)" T_Alu="106(106)" T_Lut="10(10)"/>
-  <SubModule name="u_magnitude" Register="7" Alu="11" Lut="36" T_Register="7(7)" T_Alu="11(11)" T_Lut="36(36)"/>
+  <SubModule name="u_magnitude" Register="7" Alu="11" Lut="37" T_Register="7(7)" T_Alu="11(11)" T_Lut="37(37)"/>
  </SubModule>
  <SubModule name="TMDS_PLLVR_inst"/>
  <SubModule name="DVI_TX_Top_inst" Register="73" Alu="68" Lut="217" T_Register="73(73)" T_Alu="68(68)" T_Lut="217(217)"/>

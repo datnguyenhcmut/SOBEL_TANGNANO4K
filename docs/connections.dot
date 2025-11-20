@@ -1,0 +1,61 @@
+digraph SobelSystem {
+    rankdir=TB;
+    node [shape=box, style="rounded,filled", fillcolor=lightblue];
+    
+    // Top level
+    subgraph cluster_input {
+        label="Input";
+        style=filled;
+        fillcolor=lightgray;
+        camera [label="Camera\nOV2640", fillcolor=lightgreen];
+        uart_in [label="UART RX", fillcolor=lightyellow];
+    }
+    
+    // Sobel pipeline
+    subgraph cluster_sobel {
+        label="Sobel Edge Detection Pipeline";
+        style=filled;
+        fillcolor="#e6f2ff";
+        
+        rgb2gray [label="RGB→Gray\nConverter"];
+        linebuf [label="Line Buffer\n(3-line BRAM)"];
+        gaussian [label="Gaussian\nBlur 3x3"];
+        sobel [label="Sobel\nKernel"];
+        magnitude [label="Edge\nMagnitude"];
+        
+        rgb2gray -> linebuf [label="gray[7:0]"];
+        linebuf -> gaussian [label="9x pixels"];
+        gaussian -> sobel [label="blurred\nwindow"];
+        sobel -> magnitude [label="Gx, Gy"];
+    }
+    
+    // Output
+    subgraph cluster_output {
+        label="Output";
+        style=filled;
+        fillcolor=lightgray;
+        framebuf [label="Frame Buffer\n(HyperRAM)", fillcolor=lightcyan];
+        hdmi [label="HDMI\nTransmitter", fillcolor=lightcyan];
+        uart_out [label="UART TX", fillcolor=lightyellow];
+    }
+    
+    // Connections
+    camera -> rgb2gray [label="RGB565"];
+    magnitude -> framebuf [label="edge[7:0]"];
+    framebuf -> hdmi [label="video\nstream"];
+    
+    uart_in -> linebuf [label="control", style=dashed];
+    magnitude -> uart_out [label="stats", style=dashed];
+    
+    // Legend
+    {
+        rank=sink;
+        legend [shape=none, label=<
+            <table border="0" cellspacing="0">
+            <tr><td align="left"><b>Legend:</b></td></tr>
+            <tr><td align="left">Solid lines: Data flow</td></tr>
+            <tr><td align="left">Dashed lines: Control signals</td></tr>
+            </table>
+        >];
+    }
+}

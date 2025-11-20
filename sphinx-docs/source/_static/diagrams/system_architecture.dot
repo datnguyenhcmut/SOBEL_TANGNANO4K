@@ -1,0 +1,126 @@
+digraph SystemArchitecture {
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=1.2;
+    bgcolor=white;
+    
+    node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11];
+    edge [fontname="Arial", fontsize=9, penwidth=1.5];
+    
+    // External interfaces
+    subgraph cluster_input {
+        label="Input Interfaces";
+        style=filled;
+        fillcolor="#E8F5E9";
+        fontsize=12;
+        fontname="Arial Bold";
+        
+        camera [label="OV2640 Camera\nRGB565\n640x480@30fps", fillcolor="#A5D6A7", shape=box];
+        button [label="Key Button\nMode Control", fillcolor="#A5D6A7", shape=box];
+    }
+    
+    // Clock generation
+    subgraph cluster_clk {
+        label="Clock Generation";
+        style=filled;
+        fillcolor="#FFF9C4";
+        fontsize=12;
+        fontname="Arial Bold";
+        
+        pll [label="Gowin PLLVR\n27MHz → 74.25MHz", fillcolor="#FFF59D", shape=box];
+    }
+    
+    // Video processing pipeline
+    subgraph cluster_video {
+        label="Video Processing Pipeline";
+        style=filled;
+        fillcolor="#E3F2FD";
+        fontsize=12;
+        fontname="Arial Bold";
+        
+        rgb2gray [label="RGB → Gray\nConverter", fillcolor="#90CAF9"];
+        linebuf [label="Line Buffer\n3-line BRAM\n640x3 pixels", fillcolor="#90CAF9"];
+        gaussian [label="Gaussian Blur\n3×3 Filter", fillcolor="#90CAF9"];
+        sobel [label="Sobel Kernel\nGx, Gy Computation", fillcolor="#90CAF9"];
+        edgemag [label="Edge Magnitude\n|G|=√(Gx²+Gy²)", fillcolor="#90CAF9"];
+        
+        rgb2gray -> linebuf [label="gray[7:0]", color="#1976D2"];
+        linebuf -> gaussian [label="3×3 window", color="#1976D2"];
+        gaussian -> sobel [label="blurred data", color="#1976D2"];
+        sobel -> edgemag [label="Gx[10:0]\nGy[10:0]", color="#1976D2"];
+    }
+    
+    // Frame buffer & memory
+    subgraph cluster_memory {
+        label="Frame Buffer System";
+        style=filled;
+        fillcolor="#FCE4EC";
+        fontsize=12;
+        fontname="Arial Bold";
+        
+        framebuf [label="Frame Buffer\nController", fillcolor="#F48FB1"];
+        hyperram [label="HyperRAM\n8MB\n640x480x2 bytes", fillcolor="#F48FB1"];
+        
+        framebuf -> hyperram [dir=both, label="data\nR/W"];
+    }
+    
+    // Output
+    subgraph cluster_output {
+        label="Output Interfaces";
+        style=filled;
+        fillcolor="#F3E5F5";
+        fontsize=12;
+        fontname="Arial Bold";
+        
+        dvi [label="DVI/HDMI TX\nTMDS Serializer", fillcolor="#CE93D8"];
+        hdmi [label="HDMI Output\n720p@60Hz", fillcolor="#CE93D8", shape=box];
+        uart [label="UART Interface\n115200 baud\nDebug/Control", fillcolor="#CE93D8"];
+        
+        dvi -> hdmi [label="TMDS\nCLK+DATA", color="#7B1FA2", penwidth=2];
+    }
+    
+    // LED indicators
+    led [label="LED[5:0]\nStatus Indicators", fillcolor="#FFE0B2", shape=box];
+    
+    // Main connections
+    camera -> rgb2gray [label="PIXDATA[7:0]\nHREF, VSYNC\nPIXCLK", color="#388E3C", penwidth=2];
+    
+    edgemag -> framebuf [label="magnitude[7:0]\nvalid", color="#1976D2", penwidth=2];
+    framebuf -> dvi [label="RGB565\nDE, HSYNC, VSYNC", color="#7B1FA2", penwidth=2];
+    
+    button -> rgb2gray [label="mode\nselect", style=dashed, color="#F57C00"];
+    button -> led [label="status", style=dashed, color="#F57C00"];
+    
+    pll -> camera [label="XCLK\n24MHz", style=dashed];
+    pll -> dvi [label="pixel_clk\nserial_clk", style=dashed];
+    
+    // UART connections
+    uart -> linebuf [label="control\ncommands", style=dotted, color="#6A1B9A"];
+    edgemag -> uart [label="debug\ndata", style=dotted, color="#6A1B9A"];
+    
+    // Title
+    labelloc="t";
+    label=<<b>Tang Nano 4K - Sobel Edge Detection System Architecture</b><br/>Author: Nguyễn Văn Đạt | 2025>;
+    fontsize=14;
+    
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        fillcolor="#FAFAFA";
+        fontsize=10;
+        
+        node [shape=plaintext, fillcolor=white];
+        legend [label=<
+            <table border="0" cellspacing="2">
+            <tr><td align="left"><b>Signal Types:</b></td></tr>
+            <tr><td align="left"><font color="#388E3C">━━━</font> Camera input</td></tr>
+            <tr><td align="left"><font color="#1976D2">━━━</font> Video pipeline</td></tr>
+            <tr><td align="left"><font color="#7B1FA2">━━━</font> HDMI output</td></tr>
+            <tr><td align="left"><font color="#F57C00">- - -</font> Control signals</td></tr>
+            <tr><td align="left"><font color="#6A1B9A">⋯⋯⋯</font> UART debug</td></tr>
+            </table>
+        >];
+    }
+}

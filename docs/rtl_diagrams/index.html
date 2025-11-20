@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTL Diagrams - Tang Nano 4K Sobel Project</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .module-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .diagram-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .diagram-container img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background: white;
+        }
+        .module-info {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .author {
+            text-align: right;
+            color: #888;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>RTL Block Diagrams - Tang Nano 4K Sobel Edge Detection</h1>
+    <p class="module-info">Author: Nguyễn Văn Đạt | Generated: 2025</p>
+    <h2>SRC Modules</h2>
+    <div class="module-section">
+
+        <div class="diagram-container">
+            <h3>Video Top Module</h3>
+            <p class="module-info">File: src/video_top.v</p>
+            <img src="src/video_top.svg" alt="Video Top Module">
+        </div>
+
+        <div class="diagram-container">
+            <h3>System Top with UART</h3>
+            <p class="module-info">File: src/system_top.v</p>
+            <img src="src/system_top.svg" alt="System Top with UART">
+        </div>
+    </div>
+    <h2>SOBEL Modules</h2>
+    <div class="module-section">
+
+        <div class="diagram-container">
+            <h3>Sobel Processor Pipeline</h3>
+            <p class="module-info">File: sobel/sobel_processor.v</p>
+            <img src="sobel/sobel_processor.svg" alt="Sobel Processor Pipeline">
+        </div>
+
+        <div class="diagram-container">
+            <h3>RGB565 to Grayscale Converter</h3>
+            <p class="module-info">File: sobel/rgb_to_gray.v</p>
+            <img src="sobel/rgb_to_gray.svg" alt="RGB565 to Grayscale Converter">
+        </div>
+
+        <div class="diagram-container">
+            <h3>Line Buffer for 3x3 Window</h3>
+            <p class="module-info">File: sobel/line_buffer.v</p>
+            <img src="sobel/line_buffer.svg" alt="Line Buffer for 3x3 Window">
+        </div>
+
+        <div class="diagram-container">
+            <h3>Gaussian Blur Filter</h3>
+            <p class="module-info">File: sobel/gaussian_blur.v</p>
+            <img src="sobel/gaussian_blur.svg" alt="Gaussian Blur Filter">
+        </div>
+
+        <div class="diagram-container">
+            <h3>Sobel Kernel (Gx, Gy)</h3>
+            <p class="module-info">File: sobel/sobel_kernel.v</p>
+            <img src="sobel/sobel_kernel.svg" alt="Sobel Kernel (Gx, Gy)">
+        </div>
+
+        <div class="diagram-container">
+            <h3>Edge Magnitude Calculator</h3>
+            <p class="module-info">File: sobel/edge_mag.v</p>
+            <img src="sobel/edge_mag.svg" alt="Edge Magnitude Calculator">
+        </div>
+
+        <div class="diagram-container">
+            <h3>Block RAM Wrapper</h3>
+            <p class="module-info">File: sobel/bram.v</p>
+            <img src="sobel/bram.svg" alt="Block RAM Wrapper">
+        </div>
+    </div>
+
+    <div class="author">
+        <p>Tang Nano 4K FPGA Edge Detection Project</p>
+        <p>© 2025 Nguyễn Văn Đạt</p>
+    </div>
+</body>
+</html>
