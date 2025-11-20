@@ -1,3 +1,13 @@
+//==============================================================================
+// Module: sobel_kernel
+// Description: Sobel operator tÃ­nh gradient Gx vÃ  Gy tá»« window 3x3
+//              Gx = [-1 0 1; -2 0 2; -1 0 1]
+//              Gy = [-1 -2 -1; 0 0 0; 1 2 1]
+// Author: Nguyá»…n VÄƒn Äáº¡t
+// Date: 2025
+// Target: Tang Nano 4K
+//==============================================================================
+
 module sobel_kernel #(
     parameter PIXEL_WIDTH = 8,
     parameter SOBEL_WIDTH = 11
@@ -57,23 +67,23 @@ module sobel_kernel #(
             gx_out <= gx_result;
             gy_out <= gy_result;
 
-`ifndef SYNTHESIS
-`ifdef TB_SOBEL_RANDOM
-            if (window_valid &&
-                tb_sobel_random.current_frame_id == 5 &&
-                tb_sobel_random.dut.u_linebuf.row_count >= 88 &&
-                tb_sobel_random.dut.u_linebuf.row_count <= 92 &&
-                !tb_sobel_random.dut.u_linebuf.prefill_active) begin
-                $display("[GRADDBG frame=%0d row=%0d col=%0d gx=%0h gy=%0h mag=%0h]",
-                         tb_sobel_random.current_frame_id,
-                         tb_sobel_random.dut.u_linebuf.row_count,
-                         tb_sobel_random.dut.u_linebuf.col_addr,
-                         gx_result,
-                         gy_result,
-                         mag_sat_dbg);
-            end
-`endif
-`endif
+// `ifndef SYNTHESIS
+// `ifdef TB_SOBEL_RANDOM
+//             if (window_valid &&
+//                 tb_sobel_random.current_frame_id == 5 &&
+//                 tb_sobel_random.dut.u_linebuf.row_count >= 88 &&
+//                 tb_sobel_random.dut.u_linebuf.row_count <= 92 &&
+//                 !tb_sobel_random.dut.u_linebuf.prefill_active) begin
+//                 $display("[GRADDBG frame=%0d row=%0d col=%0d gx=%0h gy=%0h mag=%0h]",
+//                          tb_sobel_random.current_frame_id,
+//                          tb_sobel_random.dut.u_linebuf.row_count,
+//                          tb_sobel_random.dut.u_linebuf.col_addr,
+//                          gx_result,
+//                          gy_result,
+//                          mag_sat_dbg);
+//             end
+// `endif
+// `endif
         end
     end
 endmodule

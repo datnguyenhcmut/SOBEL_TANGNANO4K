@@ -1,7 +1,11 @@
-// Generic inferred true dual-port block RAM with Gowin-style control signals.
-// Behavioural model keeps simulation simple while hinting the synthesiser
-// to map the storage into block RAM / SSRAM resources.
-
+//==============================================================================
+// Module: bram
+// Description: True dual-port BRAM wrapper cho Gowin FPGA
+//              Inferred block RAM để lưu line buffer data
+// Author: Nguyễn Văn Đạt
+// Date: 2025
+// Target: Tang Nano 4K (GW1NSR-LV4C)
+//==============================================================================
 module bram #(
     parameter ADDR_WIDTH = 10,
     parameter DATA_WIDTH = 8
@@ -30,8 +34,8 @@ module bram #(
         for (idx = 0; idx < DEPTH; idx = idx + 1) begin
             mem[idx] = {DATA_WIDTH{1'b0}};
         end
-    dout_reg = {DATA_WIDTH{1'b0}};
-    dout     = {DATA_WIDTH{1'b0}};
+        dout_reg = {DATA_WIDTH{1'b0}};
+        dout     = {DATA_WIDTH{1'b0}};
     end
 
     // Port A write path. reseta acts as a synchronous write enable gate.
@@ -57,4 +61,5 @@ module bram #(
     end
 
 endmodule
+
 

@@ -1,3 +1,12 @@
+//==============================================================================
+// Module: sobel_processor
+// Description: Top-level Sobel edge detection pipeline - tích hợp RGB→Gray,
+//              Line Buffer, Gaussian Blur, Sobel Kernel, Edge Magnitude
+// Author: Nguyễn Văn Đạt
+// Date: 2025
+// Target: Tang Nano 4K
+//==============================================================================
+
 module sobel_processor #(
     parameter IMG_WIDTH = 640,
     parameter IMG_HEIGHT = 480,
@@ -12,10 +21,16 @@ module sobel_processor #(
     output wire pixel_valid,
     output wire [15:0] pixel_out
 );
+
     wire [PIXEL_WIDTH-1:0] gray_pixel;
     wire gray_valid;
     wire [PIXEL_WIDTH*9-1:0] window_flat;
     wire window_valid;
+    
+    // Gaussian blur signals
+    wire [PIXEL_WIDTH*9-1:0] window_blurred;
+    wire blur_valid;
+    
     wire signed [10:0] gx, gy;
     wire sobel_valid;
     wire [PIXEL_WIDTH-1:0] edge_magnitude;
@@ -30,10 +45,16 @@ module sobel_processor #(
         .clk(clk), .rst_n(rst_n), .pixel_valid(gray_valid),
         .pixel_in(gray_pixel), .window_valid(window_valid), .window_out(window_flat)
     );
+    
+    // Gaussian blur to reduce noise
+    gaussian_blur #(.PIXEL_WIDTH(PIXEL_WIDTH)) u_gaussian (
+        .clk(clk), .rst_n(rst_n), .window_valid(window_valid),
+        .window_flat(window_flat), .blur_valid(blur_valid), .window_blurred(window_blurred)
+    );
 
     sobel_kernel u_sobel (
-        .clk(clk), .rst_n(rst_n), .window_valid(window_valid),
-        .window_flat(window_flat), .sobel_valid(sobel_valid), .gx_out(gx), .gy_out(gy)
+        .clk(clk), .rst_n(rst_n), .window_valid(blur_valid),
+        .window_flat(window_blurred), .sobel_valid(sobel_valid), .gx_out(gx), .gy_out(gy)
     );
 
     edge_mag u_magnitude (
@@ -47,47 +68,47 @@ module sobel_processor #(
     assign pixel_valid = sobel_enable ? edge_valid : href;
     assign pixel_out = sobel_enable ? sobel_rgb565 : pixel_in;
 
-`ifndef SYNTHESIS
-`ifdef TB_SOBEL_RANDOM
-    always @(posedge clk) begin
-        if (tb_sobel_random.current_frame_id == 5 &&
-            tb_sobel_random.dut.u_linebuf.row_count >= 88 &&
-            tb_sobel_random.dut.u_linebuf.row_count <= 92 &&
-            !tb_sobel_random.dut.u_linebuf.prefill_active) begin
-            if (sobel_enable && edge_valid) begin
-                $display("[PROCDBG frame=%0d row=%0d col=%0d mag=%0h rgb565=%0h sobel_en=%b]",
-                         tb_sobel_random.current_frame_id,
-                         tb_sobel_random.dut.u_linebuf.row_count,
-                         tb_sobel_random.dut.u_linebuf.col_addr,
-                         edge_magnitude,
-                         sobel_rgb565,
-                         sobel_enable);
-            end
+// `ifndef SYNTHESIS
+// `ifdef TB_SOBEL_RANDOM
+//     always @(posedge clk) begin
+//         if (tb_sobel_random.current_frame_id == 5 &&
+//             tb_sobel_random.dut.u_linebuf.row_count >= 88 &&
+//             tb_sobel_random.dut.u_linebuf.row_count <= 92 &&
+//             /!tb_sobel_random.dut.u_linebuf.prefill_active) begin
+//             if (sobel_enable && edge_valid) begin
+//                 $display("[PROCDBG frame=%0d row=%0d col=%0d mag=%0h rgb565=%0h sobel_en=%b]",
+//                          tb_sobel_random.current_frame_id,
+//                          tb_sobel_random.dut.u_linebuf.row_count,
+//                          tb_sobel_random.dut.u_linebuf.col_addr,
+//                          edge_magnitude,
+//                          sobel_rgb565,
+//                          sobel_enable);
+//             end
 
-            if (pixel_valid) begin
-                $display("[BOUNDDBG t=%0t frame=%0d row=%0d col=%0d sobel_rgb565=%0h pixel_out=%0h sobel_en=%b]",
-                         $time,
-                         tb_sobel_random.current_frame_id,
-                         tb_sobel_random.dut.u_linebuf.row_count,
-                         tb_sobel_random.dut.u_linebuf.col_addr,
-                         sobel_rgb565,
-                         pixel_out,
-                         sobel_enable);
-                $display("[MUXDBG t=%0t frame=%0d row=%0d col=%0d sobel_rgb=%0h bypass_rgb=%0h pixel_out=%0h sobel_en=%b edge_valid=%b pixel_valid=%b]",
-                         $time,
-                         tb_sobel_random.current_frame_id,
-                         tb_sobel_random.dut.u_linebuf.row_count,
-                         tb_sobel_random.dut.u_linebuf.col_addr,
-                         sobel_rgb565,
-                         pixel_in,
-                         pixel_out,
-                         sobel_enable,
-                         edge_valid,
-                         pixel_valid);
-            end
-        end
-    end
-`endif
-`endif
+//             if (pixel_valid) begin
+//                 $display("[BOUNDDBG t=%0t frame=%0d row=%0d col=%0d sobel_rgb565=%0h pixel_out=%0h sobel_en=%b]",
+//                          $time,
+//                          tb_sobel_random.current_frame_id,
+//                          tb_sobel_random.dut.u_linebuf.row_count,
+//                          tb_sobel_random.dut.u_linebuf.col_addr,
+//                          sobel_rgb565,
+//                          pixel_out,
+//                          sobel_enable);
+//                 $display("[MUXDBG t=%0t frame=%0d row=%0d col=%0d sobel_rgb=%0h bypass_rgb=%0h pixel_out=%0h sobel_en=%b edge_valid=%b pixel_valid=%b]",
+//                          $time,
+//                          tb_sobel_random.current_frame_id,
+//                          tb_sobel_random.dut.u_linebuf.row_count,
+//                          tb_sobel_random.dut.u_linebuf.col_addr,
+//                          sobel_rgb565,
+//                          pixel_in,
+//                          pixel_out,
+//                          sobel_enable,
+//                          edge_valid,
+//                          pixel_valid);
+//             end
+//         end
+//     end
+// `endif
+// `endif
 
 endmodule

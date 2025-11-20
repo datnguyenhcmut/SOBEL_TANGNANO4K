@@ -1,7 +1,12 @@
-// Optimized Line Buffer for Tang Nano 4K (GW1NSR-4C)
-// Target: Minimize LUT usage while maintaining BRAM efficiency
-// Resource budget: 4608 LUTs, 10 BSRAM blocks
-
+//==============================================================================
+// Module: line_buffer
+// Description: Line buffer 3 dòng tạo sliding window 3x3 cho Sobel
+//              Sử dụng 2 BRAM (640x8-bit) lưu 2 dòng trước
+//              Output window 9 pixels cho mỗi pixel hiện tại
+// Author: Nguyễn Văn Đạt
+// Date: 2025
+// Target: Tang Nano 4K (GW1NSR-LV4C)
+//==============================================================================
 module line_buffer #(
     parameter IMG_WIDTH   = 640,
     parameter PIXEL_WIDTH = 8,
@@ -311,3 +316,4 @@ endmodule
 // Logic depth: Reduced (fewer mux levels in address generation)
 // Timing: Maintained (proper 2-cycle BRAM latency alignment)
 // =============================================================================
+
