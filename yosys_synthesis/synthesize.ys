@@ -1,0 +1,66 @@
+# Yosys Synthesis Script for Verilog Design
+# Generated for WSL Ubuntu environment
+# Purpose: Synthesize design and generate RTL/gate-level diagrams
+
+# Read all Sobel processing modules
+read_verilog ../verilog/sobel/sobel_processor.v
+read_verilog ../verilog/sobel/rgb_to_gray.v
+read_verilog ../verilog/sobel/line_buffer.v
+read_verilog ../verilog/sobel/gaussian_blur.v
+read_verilog ../verilog/sobel/sobel_kernel.v
+read_verilog ../verilog/sobel/edge_mag.v
+
+# Set top module to sobel_processor
+hierarchy -top sobel_processor
+
+# Processing passes - Full synthesis flow
+proc;              # Convert processes to netlists
+opt;               # Basic optimizations
+fsm;               # Extract and optimize FSMs
+opt;               # Optimize after FSM extraction
+memory;            # Extract and optimize memory blocks
+opt;               # Final optimizations
+
+# Flatten design to show complete RTL (all registers, wires, datapath)
+flatten;           # Remove hierarchy - expand all modules
+opt;               # Optimize flattened design
+
+# Generate detailed RTL diagram (shows all flip-flops, muxes, adders, etc.)
+show -format dot -prefix rtl_diagram -stretch
+
+# ==============================================================================
+# LOGIC SYNTHESIS - Map to actual gates
+# ==============================================================================
+
+# Technology-independent optimizations
+wreduce;           # Reduce word sizes
+peepopt;           # Peephole optimizations
+opt_clean;         # Remove unused logic
+share;             # Share resources (adders, multipliers, etc.)
+opt;               # Optimize again
+
+# Technology mapping to basic gates
+techmap;           # Map high-level cells to gates
+opt;               # Optimize mapped design
+
+# Map arithmetic operations
+alumacc;           # Extract ALU and MAC operations
+opt;               # Optimize
+
+# Final gate-level optimizations
+abc -g AND,NAND,OR,NOR,XOR,XNOR,ANDNOT,ORNOT -liberty;  # Logic synthesis & optimization
+opt_clean;         # Final cleanup
+
+# Generate gate-level netlist diagram (after synthesis)
+show -format dot -prefix gate_diagram
+
+# Print statistics
+stat
+
+# Optional: Write synthesized netlist
+write_verilog synthesized_netlist.v
+
+# Convert DOT files to PDF using shell command
+shell dot -Tpdf rtl_diagram.dot -o rtl_diagram.pdf
+shell dot -Tpdf gate_diagram.dot -o gate_diagram.pdf
+echo "PDF files generated: rtl_diagram.pdf and gate_diagram.pdf"
