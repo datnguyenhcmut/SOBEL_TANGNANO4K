@@ -352,8 +352,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Thầy [Tên Giảng Viên] - Hướng dẫn đồ án
-- Khoa Điện Tử - Viễn Thông, ĐHBK Hà Nội
+- Thầy Trần Hoàng Quân - Hướng dẫn đồ án
+- Khoa Điện Tử - Viễn Thông, ĐHBK HCM
 - Sipeed Team - Tang Nano 4K board
 - OpenCV Community - Image processing tools
 
