@@ -18,8 +18,14 @@ module sobel_processor #(
     input  wire vsync,
     input  wire [15:0] pixel_in,
     input  wire sobel_enable,
+    input  wire [7:0] edge_threshold,        // ← NEW: Binarization threshold
+    input  wire [1:0] threshold_mode,        // ← NEW: 00=fixed, 01=adaptive, 10=hysteresis
     output wire pixel_valid,
-    output wire [15:0] pixel_out
+    output wire [15:0] pixel_out,
+    output wire binary_pixel,                // ← NEW: Binary edge output
+    output wire binary_valid,                // ← NEW: Binary valid
+    output wire strong_edge,                 // ← NEW: Strong edge (Canny)
+    output wire weak_edge                    // ← NEW: Weak edge (Canny)
 );
 
     wire [PIXEL_WIDTH-1:0] gray_pixel;
@@ -62,6 +68,27 @@ module sobel_processor #(
         .gx_in(gx), .gy_in(gy), .edge_valid(edge_valid), .edge_magnitude(edge_magnitude)
     );
 
+    //==========================================================================
+    // NEW: Image Binarization Module
+    // Supports multiple thresholding methods (fixed, adaptive, hysteresis)
+    //==========================================================================
+    image_binarization #(
+        .PIXEL_WIDTH(8),
+        .DEFAULT_THRESHOLD(8'd100),
+        .HIGH_THRESHOLD(8'd150),
+        .LOW_THRESHOLD(8'd50)
+    ) u_binarization (
+        .clk            (clk),
+        .rst_n          (rst_n),
+        .edge_magnitude (edge_magnitude),
+        .edge_valid     (edge_valid),
+        .threshold      (edge_threshold),
+        .threshold_mode (threshold_mode),
+        .binary_pixel   (binary_pixel),
+        .binary_valid   (binary_valid),
+        .strong_edge    (strong_edge),
+        .weak_edge      (weak_edge)
+    );
 
     wire [15:0] sobel_rgb565 = {edge_magnitude[7:3], edge_magnitude[7:2], edge_magnitude[7:3]};
 
