@@ -1,242 +1,34 @@
 [
  {
-  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_top.v",
-  "InstLine" : 9,
-  "InstName" : "uart_top",
-  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_top.v",
-  "ModuleLine" : 9,
-  "ModuleName" : "uart_top",
-  "SubInsts" : [
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_top.v",
-    "InstLine" : 33,
-    "InstName" : "u_uart_tx",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_tx.v",
-    "ModuleLine" : 9,
-    "ModuleName" : "uart_tx"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_top.v",
-    "InstLine" : 45,
-    "InstName" : "u_uart_rx",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/uart_rx.v",
-    "ModuleLine" : 9,
-    "ModuleName" : "uart_rx"
-   }
-  ]
+  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/morphological_filter.v",
+  "InstLine" : 11,
+  "InstName" : "morphological_filter",
+  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/morphological_filter.v",
+  "ModuleLine" : 11,
+  "ModuleName" : "morphological_filter"
  },
  {
-  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-  "InstLine" : 1,
-  "InstName" : "video_top",
-  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-  "ModuleLine" : 1,
-  "ModuleName" : "video_top",
-  "SubInsts" : [
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 120,
-    "InstName" : "testpattern_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/testpattern.v",
-    "ModuleLine" : 17,
-    "ModuleName" : "testpattern"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 165,
-    "InstName" : "u_Reset_Sync",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "ModuleLine" : 402,
-    "ModuleName" : "Reset_Sync"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 172,
-    "InstName" : "u_OV2640_Controller",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Controller.v",
-    "ModuleLine" : 1,
-    "ModuleName" : "OV2640_Controller",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Controller.v",
-      "InstLine" : 30,
-      "InstName" : "LUT",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Registers.v",
-      "ModuleLine" : 1,
-      "ModuleName" : "OV2640_Registers"
-     },
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/OV2640_Controller.v",
-      "InstLine" : 41,
-      "InstName" : "I2C",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/ov2640/I2C_Interface.v",
-      "ModuleLine" : 14,
-      "ModuleName" : "I2C_Interface"
-     }
-    ]
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 213,
-    "InstName" : "key_flag_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "ModuleLine" : 421,
-    "ModuleName" : "key_flag"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 222,
-    "InstName" : "Video_Frame_Buffer_Top_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_frame_buffer/video_frame_buffer.v",
-    "ModuleLine" : 3014,
-    "ModuleName" : "Video_Frame_Buffer_Top",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_frame_buffer/video_frame_buffer.v",
-      "InstLine" : 3065,
-      "InstName" : "vfb_hyperram_wrapper_inst",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_frame_buffer/video_frame_buffer.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "~vfb_hyperram_wrapper.Video_Frame_Buffer_Top"
-     }
-    ]
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 254,
-    "InstName" : "GW_PLLVR_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/gowin_pllvr/GW_PLLVR.v",
-    "ModuleLine" : 8,
-    "ModuleName" : "GW_PLLVR"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 261,
-    "InstName" : "HyperRAM_Memory_Interface_Top_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/hyperram_memory_interface/hyperram_memory_interface.v",
-    "ModuleLine" : 3735,
-    "ModuleName" : "HyperRAM_Memory_Interface_Top",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/hyperram_memory_interface/hyperram_memory_interface.v",
-      "InstLine" : 3810,
-      "InstName" : "u_hpram_top",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/hyperram_memory_interface/hyperram_memory_interface.v",
-      "ModuleLine" : 23,
-      "ModuleName" : "~hpram_top.HyperRAM_Memory_Interface_Top_"
-     }
-    ]
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 286,
-    "InstName" : "syn_gen_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/syn_code/syn_gen.v",
-    "ModuleLine" : 1,
-    "ModuleName" : "syn_gen"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 317,
-    "InstName" : "u_sobel_processor",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-    "ModuleLine" : 10,
-    "ModuleName" : "sobel_processor",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-      "InstLine" : 39,
-      "InstName" : "u_rgb2gray",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/rgb_to_gray.v",
-      "ModuleLine" : 19,
-      "ModuleName" : "rgb_to_gray"
-     },
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-      "InstLine" : 44,
-      "InstName" : "u_linebuf",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "line_buffer",
-      "SubInsts" : [
-       {
-        "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
-        "InstLine" : 221,
-        "InstName" : "line0",
-        "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/bram.v",
-        "ModuleLine" : 9,
-        "ModuleName" : "bram"
-       },
-       {
-        "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
-        "InstLine" : 238,
-        "InstName" : "line1",
-        "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/bram.v",
-        "ModuleLine" : 9,
-        "ModuleName" : "bram"
-       },
-       {
-        "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
-        "InstLine" : 255,
-        "InstName" : "line2",
-        "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/bram.v",
-        "ModuleLine" : 9,
-        "ModuleName" : "bram"
-       }
-      ]
-     },
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-      "InstLine" : 50,
-      "InstName" : "u_gaussian",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/gaussian_blur.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "gaussian_blur"
-     },
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-      "InstLine" : 55,
-      "InstName" : "u_sobel",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_kernel.v",
-      "ModuleLine" : 11,
-      "ModuleName" : "sobel_kernel"
-     },
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/sobel_processor.v",
-      "InstLine" : 60,
-      "InstName" : "u_magnitude",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/edge_mag.v",
-      "ModuleLine" : 11,
-      "ModuleName" : "edge_mag"
-     }
-    ]
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 366,
-    "InstName" : "TMDS_PLLVR_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/gowin_pllvr/TMDS_PLLVR.v",
-    "ModuleLine" : 9,
-    "ModuleName" : "TMDS_PLLVR"
-   },
-   {
-    "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
-    "InstLine" : 383,
-    "InstName" : "DVI_TX_Top_inst",
-    "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/dvi_tx/dvi_tx.v",
-    "ModuleLine" : 1048,
-    "ModuleName" : "DVI_TX_Top",
-    "SubInsts" : [
-     {
-      "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/dvi_tx/dvi_tx.v",
-      "InstLine" : 1079,
-      "InstName" : "rgb2dvi_inst",
-      "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/dvi_tx/dvi_tx.v",
-      "ModuleLine" : 10,
-      "ModuleName" : "~rgb2dvi.DVI_TX_Top"
-     }
-    ]
-   }
-  ]
+  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/binary_line_buffer.v",
+  "InstLine" : 9,
+  "InstName" : "binary_line_buffer",
+  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/binary_line_buffer.v",
+  "ModuleLine" : 9,
+  "ModuleName" : "binary_line_buffer"
+ },
+ {
+  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/lane_detector.v",
+  "InstLine" : 11,
+  "InstName" : "lane_detector",
+  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/lane_detector.v",
+  "ModuleLine" : 11,
+  "ModuleName" : "lane_detector"
+ },
+ {
+  "InstFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/hough_transform.v",
+  "InstLine" : 11,
+  "InstName" : "hough_transform",
+  "ModuleFile" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/hough_transform.v",
+  "ModuleLine" : 11,
+  "ModuleName" : "hough_transform"
  }
 ]

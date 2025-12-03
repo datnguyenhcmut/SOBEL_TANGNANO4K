@@ -85,7 +85,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov 17 18:42:17 2025
+<td>Tue Dec  2 16:27:52 2025
 </td>
 </tr>
 <tr>
@@ -157,7 +157,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <table class="summary_table">
 <tr>
 <td class="label">Total Power (mW)</td>
-<td>59.850</td>
+<td>66.168</td>
 </tr>
 <tr>
 <td class="label">Quiescent Power (mW)</td>
@@ -165,14 +165,14 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Dynamic Power (mW)</td>
-<td>49.222</td>
+<td>55.540</td>
 </tr>
 </table>
 <h2><a name="Thermal_Info">Thermal Information:</a></h2>
 <table class="summary_table">
 <tr>
 <td class="label">Junction Temperature</td>
-<td>27.423</td>
+<td>27.685</td>
 </tr>
 <tr>
 <td class="label">Theta JA</td>
@@ -180,7 +180,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Max Allowed Ambient Temperature</td>
-<td>82.577</td>
+<td>82.315</td>
 </tr>
 </table>
 <h2><a name="Supply_Summary">Supply Information:</a></h2>
@@ -195,16 +195,16 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td>VCC</td>
 <td>1.200</td>
-<td>35.044</td>
+<td>40.250</td>
 <td>3.247</td>
-<td>45.950</td>
+<td>52.197</td>
 </tr>
 <tr>
 <td>VCCX</td>
 <td>3.300</td>
-<td>0.606</td>
+<td>0.617</td>
 <td>1.584</td>
-<td>7.229</td>
+<td>7.264</td>
 </tr>
 <tr>
 <td>VCCIO18</td>
@@ -223,9 +223,9 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td>VCCIO33</td>
 <td>3.300</td>
-<td>0.114</td>
+<td>0.125</td>
 <td>0.143</td>
-<td>0.849</td>
+<td>0.885</td>
 </tr>
 </table>
 <h1><a name="Detail">Power Details</a></h1>
@@ -239,15 +239,15 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td>Logic</td>
-<td>1.007</td>
+<td>1.026</td>
 <td>NA</td>
-<td>8.322</td>
+<td>8.458</td>
 </tr>
 <tr>
 <td>IO</td>
-<td>10.489
+<td>10.573
 <td>2.513
-<td>18.936
+<td>19.073
 </tr>
 <tr>
 <td>BSRAM</td>
@@ -269,9 +269,9 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td>DSP</td>
-<td>3.107
+<td>9.322
 <td>NA</td>
-<td>2.437
+<td>2.558
 </tr>
 </table>
 <h2><a name="By_Hierarchy">Power By Hierarchy:</a></h2>
@@ -283,8 +283,8 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td>video_top</td>
-<td>41.225</td>
-<td>41.225(41.213)</td>
+<td>47.459</td>
+<td>47.459(47.451)</td>
 <tr>
 <td>video_top/DVI_TX_Top_inst/</td>
 <td>0.144</td>
@@ -383,8 +383,8 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>0.020(0.000)</td>
 <tr>
 <td>video_top/key_flag_inst/</td>
-<td>0.005</td>
-<td>0.005(0.000)</td>
+<td>0.004</td>
+<td>0.004(0.000)</td>
 <tr>
 <td>video_top/syn_gen_inst/</td>
 <td>0.019</td>
@@ -411,12 +411,16 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>0.002(0.000)</td>
 <tr>
 <td>video_top/u_sobel_processor/</td>
-<td>4.136</td>
-<td>4.136(4.136)</td>
+<td>10.376</td>
+<td>10.376(4.141)</td>
 <tr>
-<td>video_top/u_sobel_processor/u_gaussian/</td>
+<td>video_top/u_sobel_processor/u_bilateral/</td>
 <td>0.007</td>
 <td>0.007(0.000)</td>
+<tr>
+<td>video_top/u_sobel_processor/u_binarization/</td>
+<td>0.001</td>
+<td>0.001(0.000)</td>
 <tr>
 <td>video_top/u_sobel_processor/u_linebuf/</td>
 <td>0.838</td>
@@ -435,8 +439,12 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>0.256(0.000)</td>
 <tr>
 <td>video_top/u_sobel_processor/u_magnitude/</td>
-<td>0.023</td>
-<td>0.023(0.000)</td>
+<td>0.025</td>
+<td>0.025(0.000)</td>
+<tr>
+<td>video_top/u_sobel_processor/u_noise_filter/</td>
+<td>0.001</td>
+<td>0.001(0.000)</td>
 <tr>
 <td>video_top/u_sobel_processor/u_rgb2gray/</td>
 <td>3.107</td>
@@ -454,24 +462,19 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th class="label">Total Dynamic Power(mW)</th>
 </tr>
 <tr>
-<td>HyperRAM_Memory_Interface_Top_inst/u_hpram_top/clkdiv/CLKOUT.default_gen_clk</td>
-<td>79.500</td>
-<td>10.350</td>
-</tr>
-<tr>
 <td>ch0_vfb_clk_in</td>
 <td>50.000</td>
 <td>2.058</td>
 </tr>
 <tr>
-<td>pix_clk</td>
-<td>74.250</td>
-<td>7.361</td>
+<td>HyperRAM_Memory_Interface_Top_inst/u_hpram_top/clkdiv/CLKOUT.default_gen_clk</td>
+<td>79.500</td>
+<td>10.350</td>
 </tr>
 <tr>
 <td>I_clk</td>
 <td>27.000</td>
-<td>11.615</td>
+<td>11.609</td>
 </tr>
 <tr>
 <td>NO CLOCK DOMAIN</td>
@@ -482,6 +485,11 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>TMDS_PLLVR_inst/pllvr_inst/CLKOUTD.default_gen_clk</td>
 <td>12.375</td>
 <td>0.053</td>
+</tr>
+<tr>
+<td>pix_clk</td>
+<td>74.250</td>
+<td>13.601</td>
 </tr>
 <tr>
 <td>GW_PLLVR_inst/pllvr_inst/CLKOUT.default_gen_clk</td>

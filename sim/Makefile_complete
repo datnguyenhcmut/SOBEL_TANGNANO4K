@@ -1,0 +1,101 @@
+# Makefile for Sobel Edge Detection Testbench
+# Author: Nguyễn Văn Đạt
+# Date: 2025-12-02
+
+# Simulator
+IVERILOG = iverilog
+VVP = vvp
+GTKWAVE = gtkwave
+
+# Directories
+VERILOG_DIR = ../verilog/sobel
+SRC_DIR = ../verilog/src
+SIM_DIR = .
+DATA_DIR = ./data
+
+# Source files
+SOURCES = \
+	$(VERILOG_DIR)/rgb_to_gray.v \
+	$(VERILOG_DIR)/line_buffer.v \
+	$(VERILOG_DIR)/gaussian_blur.v \
+	$(VERILOG_DIR)/bilateral_filter.v \
+	$(VERILOG_DIR)/sobel_kernel.v \
+	$(VERILOG_DIR)/edge_mag.v \
+	$(VERILOG_DIR)/image_binarization.v \
+	$(VERILOG_DIR)/noise_rejection_filter.v \
+	$(VERILOG_DIR)/sobel_processor.v
+
+# Testbench
+TB = tb_sobel_complete_pipeline.sv
+
+# Output
+SIM_OUT = sim_complete_pipeline
+VCD = tb_sobel_complete.vcd
+
+# Default target
+all: compile run
+
+# Generate test data
+data:
+	@echo "Generating test data..."
+	cd ../1_PYTHON && python generate_testbench_data.py
+
+# Compile testbench
+compile: $(SOURCES) $(TB)
+	@echo "Compiling testbench..."
+	$(IVERILOG) -g2012 -o $(SIM_OUT) $(TB) $(SOURCES)
+	@echo "Compilation successful"
+
+# Run simulation
+run: $(SIM_OUT)
+	@echo "Running simulation..."
+	$(VVP) $(SIM_OUT)
+	@echo "Simulation complete"
+
+# View waveforms
+wave: $(VCD)
+	@echo "Opening waveform viewer..."
+	$(GTKWAVE) $(VCD)
+
+# Full test: data + compile + run
+test: data compile run
+	@echo "Full test complete"
+
+# Compare with Python
+compare:
+	@echo "Comparing Verilog output with Python golden reference..."
+	cd ../1_PYTHON && python -c "\
+import numpy as np; \
+expected = np.fromfile('../sim/data/expected_output.bin', dtype=np.uint8); \
+actual = np.fromfile('../sim/data/verilog_output.bin', dtype=np.uint8); \
+diff = np.sum(expected != actual); \
+print(f'Different pixels: {diff} / {len(expected)} ({100*diff/len(expected):.2f}%)'); \
+print(f'Match rate: {100*(1-diff/len(expected)):.2f}%')"
+
+# Clean
+clean:
+	@echo "Cleaning..."
+	rm -f $(SIM_OUT) $(VCD)
+	rm -f *.vcd *.log
+	@echo "Clean complete"
+
+# Clean all (including data)
+cleanall: clean
+	@echo "Cleaning all generated data..."
+	rm -rf $(DATA_DIR)/*.bin $(DATA_DIR)/*.png
+	@echo "All clean"
+
+# Help
+help:
+	@echo "Makefile targets:"
+	@echo "  make data      - Generate test data using Python"
+	@echo "  make compile   - Compile testbench"
+	@echo "  make run       - Run simulation"
+	@echo "  make wave      - View waveforms"
+	@echo "  make test      - Full test (data + compile + run)"
+	@echo "  make compare   - Compare Verilog vs Python outputs"
+	@echo "  make clean     - Remove simulation files"
+	@echo "  make cleanall  - Remove all generated files"
+	@echo "  make help      - Show this help"
+
+.PHONY: all data compile run wave test compare clean cleanall help

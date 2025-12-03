@@ -10,7 +10,8 @@
 module sobel_processor #(
     parameter IMG_WIDTH = 640,
     parameter IMG_HEIGHT = 480,
-    parameter PIXEL_WIDTH = 8
+    parameter PIXEL_WIDTH = 8,
+    parameter USE_BILATERAL = 0              // 0=Gaussian, 1=Bilateral (edge-preserving)
 )(
     input  wire clk,
     input  wire rst_n,
@@ -52,15 +53,30 @@ module sobel_processor #(
         .pixel_in(gray_pixel), .window_valid(window_valid), .window_out(window_flat)
     );
     
-    // Gaussian blur to reduce noise
+    // Gaussian blur (traditional - smooths everything)
     gaussian_blur #(.PIXEL_WIDTH(PIXEL_WIDTH)) u_gaussian (
         .clk(clk), .rst_n(rst_n), .window_valid(window_valid),
         .window_flat(window_flat), .blur_valid(blur_valid), .window_blurred(window_blurred)
     );
+    
+    // Bilateral filter (edge-preserving - keeps sharp edges, removes noise)
+    wire [PIXEL_WIDTH*9-1:0] window_bilateral;
+    wire bilateral_valid;
+    bilateral_filter #(
+        .PIXEL_WIDTH(PIXEL_WIDTH),
+        .SIGMA_RANGE(28)  // BALANCED: Sharp edges with noise reduction (was 35)
+    ) u_bilateral (
+        .clk(clk), .rst_n(rst_n), .window_valid(window_valid),
+        .window_flat(window_flat), .filter_valid(bilateral_valid), .window_filtered(window_bilateral)
+    );
+    
+    // Select filter: 0=Gaussian (smoother), 1=Bilateral (edge-preserving)
+    wire [PIXEL_WIDTH*9-1:0] window_filtered = USE_BILATERAL ? window_bilateral : window_blurred;
+    wire filter_valid = USE_BILATERAL ? bilateral_valid : blur_valid;
 
     sobel_kernel u_sobel (
-        .clk(clk), .rst_n(rst_n), .window_valid(blur_valid),
-        .window_flat(window_blurred), .sobel_valid(sobel_valid), .gx_out(gx), .gy_out(gy)
+        .clk(clk), .rst_n(rst_n), .window_valid(filter_valid),
+        .window_flat(window_filtered), .sobel_valid(sobel_valid), .gx_out(gx), .gy_out(gy)
     );
 
     edge_mag u_magnitude (
@@ -69,25 +85,83 @@ module sobel_processor #(
     );
 
     //==========================================================================
+    // Shadow & Blob Rejection Filter
+    // - Shadows/blobs: Low gradient consistency, weak magnitude
+    // - Object edges: High consistency, strong magnitude
+    //==========================================================================
+    reg signed [10:0] gx_prev, gy_prev;
+    reg edge_valid_d;
+    reg [PIXEL_WIDTH-1:0] edge_magnitude_d;
+    reg [PIXEL_WIDTH-1:0] magnitude_prev;
+    
+    always @(posedge clk) begin
+        if (edge_valid) begin
+            gx_prev <= gx;
+            gy_prev <= gy;
+            edge_valid_d <= edge_valid;
+            edge_magnitude_d <= edge_magnitude;
+            magnitude_prev <= edge_magnitude;
+        end
+    end
+    
+    // 1. Gradient Direction Consistency (removes shadows/light patches)
+    wire signed [21:0] dot_product = (gx * gx_prev) + (gy * gy_prev);
+    wire signed [21:0] mag_product = (gx * gx) + (gy * gy) + 1;
+    wire gradient_consistent = (dot_product > (mag_product >>> 1)); // >0.5 (balanced)
+    
+    // 2. Magnitude Consistency (removes blobs/patches)
+    // Object edges have similar magnitude along the edge, blobs vary wildly
+    wire [PIXEL_WIDTH-1:0] mag_diff = (edge_magnitude_d > magnitude_prev) ? 
+                                      (edge_magnitude_d - magnitude_prev) : 
+                                      (magnitude_prev - edge_magnitude_d);
+    wire magnitude_stable = (mag_diff < 8'd40); // Balanced: Keep edges, remove patches
+    
+    // 3. Minimum magnitude threshold (remove weak gradients)
+    wire magnitude_strong = (edge_magnitude_d > 8'd65); // LOWERED: Detect more edges, noise filter active
+    
+    // Combine all filters: Must pass ALL conditions
+    wire edge_is_valid = gradient_consistent && magnitude_stable && magnitude_strong && edge_valid_d;
+    
+    // Apply filters
+    wire [PIXEL_WIDTH-1:0] filtered_magnitude = edge_is_valid ? edge_magnitude_d : 8'd0;
+    wire filtered_valid = edge_valid_d;
+
+    //==========================================================================
     // NEW: Image Binarization Module
     // Supports multiple thresholding methods (fixed, adaptive, hysteresis)
     //==========================================================================
+    wire binary_pixel_raw;
+    wire binary_valid_raw;
+    
     image_binarization #(
         .PIXEL_WIDTH(8),
         .DEFAULT_THRESHOLD(8'd100),
-        .HIGH_THRESHOLD(8'd150),
-        .LOW_THRESHOLD(8'd50)
+        .HIGH_THRESHOLD(8'd95),         // LOWERED: Detect more edges (was 105)
+        .LOW_THRESHOLD(8'd55)           // LOWERED: Include weaker edges (was 65)
     ) u_binarization (
         .clk            (clk),
         .rst_n          (rst_n),
-        .edge_magnitude (edge_magnitude),
-        .edge_valid     (edge_valid),
+        .edge_magnitude (filtered_magnitude),  // Use shadow-filtered magnitude
+        .edge_valid     (filtered_valid),      // Use filtered valid signal
         .threshold      (edge_threshold),
         .threshold_mode (threshold_mode),
-        .binary_pixel   (binary_pixel),
-        .binary_valid   (binary_valid),
+        .binary_pixel   (binary_pixel_raw),    // Raw binary (before morphological filter)
+        .binary_valid   (binary_valid_raw),
         .strong_edge    (strong_edge),
         .weak_edge      (weak_edge)
+    );
+
+    //==========================================================================
+    // Noise Rejection Filter: Remove isolated pixels, keep continuous edges
+    // Simple spatial filter - NO line buffer needed (no white lines!)
+    //==========================================================================
+    noise_rejection_filter u_noise_filter (
+        .clk              (clk),
+        .rst_n            (rst_n),
+        .pixel_valid      (binary_valid_raw),
+        .pixel_in         (binary_pixel_raw),
+        .pixel_out        (binary_pixel),
+        .pixel_out_valid  (binary_valid)
     );
 
     wire [15:0] sobel_rgb565 = {edge_magnitude[7:3], edge_magnitude[7:2], edge_magnitude[7:3]};

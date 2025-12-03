@@ -14,6 +14,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/image_binarization.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/line_buffer.v",
    "Type" : "verilog"
   },
@@ -87,6 +91,30 @@
   },
   {
    "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/src/video_top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/bilateral_filter.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/morphological_filter.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/binary_line_buffer.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/noise_rejection_filter.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/lane_detector.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/tangnano4k/SOBEL_TANGNANO4K/verilog/sobel/hough_transform.v",
    "Type" : "verilog"
   }
  ],

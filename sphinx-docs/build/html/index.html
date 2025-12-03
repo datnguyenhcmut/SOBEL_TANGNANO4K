@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tang Nano 4K Sobel Edge Detection &#8212; Tang Nano 4K Sobel Edge Detection 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RTL Modules Documentation" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="tang-nano-4k-sobel-edge-detection">
+<h1>Tang Nano 4K Sobel Edge Detection<a class="headerlink" href="#tang-nano-4k-sobel-edge-detection" title="Link to this heading">¶</a></h1>
+<p><strong>Real-time Edge Detection on FPGA</strong></p>
+<p><strong>Author:</strong> Nguyễn Văn Đạt</p>
+<p><strong>Target:</strong> Tang Nano 4K (Gowin GW1NSR-LV4C)</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>This project implements a complete real-time Sobel edge detection system on the Tang Nano 4K FPGA board.</p>
+<p><strong>Pipeline Architecture:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Camera OV2640 → RGB→Gray → Line Buffer → Gaussian Blur → Sobel Kernel
+                                             ↓
+               HDMI Output ← Frame Buffer ← Edge Magnitude
+</pre></div>
+</div>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Real-time 640×480 video processing at 60 FPS</p></li>
+<li><p>Gaussian blur preprocessing for noise reduction</p></li>
+<li><p>Optimized edge magnitude scaling for visibility</p></li>
+<li><p>HDMI output with frame buffering</p></li>
+<li><p>UART debug interface</p></li>
+</ul>
+<p><strong>Resource Usage:</strong></p>
+<ul class="simple">
+<li><p>LUTs: ~2,500 / 4,608 (54%)</p></li>
+<li><p>BRAM: 6 / 10 blocks (60%)</p></li>
+<li><p>Clock: 27 MHz system, 74.25 MHz HDMI</p></li>
+</ul>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">RTL Modules Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#sobel-edge-detection-pipeline">Sobel Edge Detection Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#uart-interface">UART Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#overall-system-block-diagram">Overall System Block Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#system-components">System Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#data-flow">Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#resource-utilization">Resource Utilization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#timing-performance">Timing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#pipeline-latency">Pipeline Latency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#memory-organization">Memory Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#external-interfaces">External Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#power-consumption">Power Consumption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-constraints">Design Constraints</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p><strong>Clone Repository:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/datnguyenhcmut/SOBEL_TANGNANO4K.git
+<span class="nb">cd</span><span class="w"> </span>SOBEL_TANGNANO4K
+</pre></div>
+</div>
+</li>
+<li><p><strong>Build with Gowin EDA:</strong></p>
+<ul class="simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">verilog/camera_hdmi.gprj</span></code></p></li>
+<li><p>Synthesize and Place &amp; Route</p></li>
+<li><p>Program FPGA</p></li>
+</ul>
+</li>
+<li><p><strong>Run Simulation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>sim
+make<span class="w"> </span>msim-gui
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Tang Nano 4K Sobel Edge Detection</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">RTL Modules Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="modules.html" title="next chapter">RTL Modules Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Nguyễn Văn Đạt.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

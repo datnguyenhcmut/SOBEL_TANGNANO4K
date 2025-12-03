@@ -1,0 +1,51 @@
+Kính gửi Thầy [Tên Thầy],
+
+Em là Nguyễn Văn Đạt, sinh viên lớp [Mã lớp].
+
+Em xin phép gửi Thầy báo cáo tiến độ dự án "Module Image Binarization cho Phát hiện Cạnh trên FPGA Tang Nano 4K".
+
+**Nội dung báo cáo:**
+
+1. **Module Image Binarization:**
+   - Triển khai 3 phương pháp thresholding: Fixed, Adaptive (Otsu-based), và Hysteresis (Canny-style)
+   - Bộ lọc 3 lớp để loại bỏ bóng và nhiễu (Shadow/Blob Filter)
+   - Đạt 91% edge recall với chỉ 1% nhiễu
+   - Throughput: 87 fps @ 640×480 trên Tang Nano 4K
+
+2. **Module Hough Transform cho phát hiện đường thẳng:**
+   - Triển khai hoàn chỉnh với voting algorithm và peak detection
+   - Validation thành công với Python reference model (7/7 test cases PASS)
+   - Simulation ModelSim xác nhận độ chính xác góc ±1°
+   - Ghi chú: Module vượt tài nguyên Tang Nano 4K (cần 196,608 DFFs vs 3,612 có sẵn), đã preserve để deploy trên FPGA lớn hơn
+
+3. **Phương pháp kiểm thử:**
+   - Python golden reference với NumPy
+   - ModelSim simulation với testbench chi tiết
+   - Test trên hardware thực tế với OV2640 camera
+
+**File đính kèm:**
+- image_binarization_report.pdf - Báo cáo đầy đủ (có hình ảnh, bảng biểu, log simulation)
+- Source code: https://github.com/datnguyenhcmut/SOBEL_TANGNANO4K
+
+Báo cáo bao gồm:
+✓ Cơ sở lý thuyết với trích dẫn đầy đủ (9 papers khoa học)
+✓ Triển khai Verilog chi tiết với giải thích
+✓ Kết quả test với log Python và ModelSim
+✓ Hình ảnh minh họa và waveform analysis
+✓ Resource utilization và timing analysis
+✓ So sánh hiệu năng các phương pháp
+
+Em rất mong nhận được ý kiến đóng góp và hướng dẫn của Thầy để hoàn thiện dự án.
+
+Em xin chân thành cảm ơn Thầy!
+
+Trân trọng,
+Nguyễn Văn Đạt
+Email: [email của bạn]
+SĐT: [số điện thoại]
+Ngày: 03/12/2025
+
+
+---
+
+P/S: Nếu Thầy có thắc mắc về bất kỳ phần nào trong báo cáo, em sẵn sàng trình bày chi tiết hoặc demo code/simulation. Em có thể gặp Thầy vào thời gian Thầy thuận tiện.

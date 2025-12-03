@@ -5,10 +5,17 @@
     <Version>5</Version>
     <Device name="GW1NSR-4C" pn="GW1NSR-LV4CQN48PC6/I5">gw1nsr4c-000</Device>
     <FileList>
+        <File path="sobel/bilateral_filter.v" type="file.verilog" enable="1"/>
+        <File path="sobel/binary_line_buffer.v" type="file.verilog" enable="1"/>
         <File path="sobel/bram.v" type="file.verilog" enable="1"/>
         <File path="sobel/edge_mag.v" type="file.verilog" enable="1"/>
         <File path="sobel/gaussian_blur.v" type="file.verilog" enable="1"/>
+        <File path="sobel/hough_transform.v" type="file.verilog" enable="1"/>
+        <File path="sobel/image_binarization.v" type="file.verilog" enable="1"/>
+        <File path="sobel/lane_detector.v" type="file.verilog" enable="1"/>
         <File path="sobel/line_buffer.v" type="file.verilog" enable="1"/>
+        <File path="sobel/morphological_filter.v" type="file.verilog" enable="1"/>
+        <File path="sobel/noise_rejection_filter.v" type="file.verilog" enable="1"/>
         <File path="sobel/rgb_to_gray.v" type="file.verilog" enable="1"/>
         <File path="sobel/sobel_kernel.v" type="file.verilog" enable="1"/>
         <File path="sobel/sobel_processor.v" type="file.verilog" enable="1"/>

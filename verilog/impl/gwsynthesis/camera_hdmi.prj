@@ -7,6 +7,7 @@
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bram.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\edge_mag.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\gaussian_blur.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\image_binarization.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\line_buffer.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\rgb_to_gray.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_kernel.v" type="verilog"/>
@@ -22,10 +23,16 @@
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Controller.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Registers.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\syn_code\syn_gen.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\testpattern.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_frame_buffer\video_frame_buffer.v" type="verilog"/>
         <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v" type="verilog"/>
-        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bilateral_filter.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\morphological_filter.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\binary_line_buffer.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\noise_rejection_filter.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\lane_detector.v" type="verilog"/>
+        <File path="D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\hough_transform.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>

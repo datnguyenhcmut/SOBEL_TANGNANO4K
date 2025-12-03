@@ -1,68 +1,75 @@
-# Simulation artifacts
-sim/*.vvp
-sim/*.vcd
-sim/*.log
-sim/a.out
+﻿# Simulation files
+*.vvp
+*.vcd
+*.wlf
+*.vstf
+*.log
+sim_*.vvp
+a.out
+transcript
+work/
+vsim.wlf
 
 # Python cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.Python
-*.so
 *.egg-info/
-dist/
-build/
+.pytest_cache/
+*.png
+*.jpg
+*.jpeg
+results/*.png
+results/*.jpg
 
-# Data files (large videos - uncomment to exclude if needed)
-# data/*.mp4
-data/*.rgb
-data/*.json
-data/*.avi
+# FPGA synthesis/implementation temporaries
+impl/temp/
+impl/gwsynthesis/*.log
+impl/pnr/*.log
+impl/gwsynthesis/*.rpt
+impl/pnr/*.rpt
+impl/gwsynthesis/camera_hdmi.vg
+impl/pnr/camera_hdmi.tr
 
-# LaTeX temporary files
-docs/*.aux
-docs/*.log
-docs/*.out
-docs/*.toc
-docs/*.synctex.gz
-docs/*.fdb_latexmk
-docs/*.fls
-docs/*.bbl
-docs/*.blg
-docs/*.pdf
-
-# Editor files
+# Editor/IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-*.bak
-
-# OS files
 .DS_Store
-Thumbs.db
-desktop.ini
 
-# FPGA synthesis files (Gowin IDE)
-verilog/impl/**/*.rpt
-verilog/impl/**/*.log
-verilog/impl/**/*.vo
-verilog/impl/**/*.vg
-verilog/*.bit
-verilog/*.bin
-verilog/*.fs
+# Latex temporaries
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
 
-# Test results and temporary files
-sim/golden/*.mem
-random_log*.txt
-sim_random.log
-tmp_*.py
-tmp_*.txt
+# Build artifacts
+*.o
+*.exe
+*.dll
+*.so
+*.a
 
-# Ignore potentially large video files in root
-*.mp4
-*.avi
-*.mov
+# Keep these important files
+!*.v
+!*.sv
+!*.py
+!*.do
+!*.tcl
+!*.md
+!*.txt
+!*.tex
+!Makefile
+!*.bat
+!*.cst
+!*.sdc
+!*.gprj

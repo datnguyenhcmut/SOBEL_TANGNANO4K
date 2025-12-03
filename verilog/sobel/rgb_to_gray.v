@@ -9,7 +9,6 @@
 // Author: nguyen van dat
 // Date: 2025
 // Target: Tang Nano 4K (Gowin GW1NSR-LV4C)
-//
 // Parameters:
 //   - USE_WEIGHTED: 0 = simple avg, 1 = weighted avg (ITU-R BT.601)
 //

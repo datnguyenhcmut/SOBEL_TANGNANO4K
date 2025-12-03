@@ -110,8 +110,9 @@ end
 
 assign  running = (run_cnt < 32'd13_500_000) ? 1'b1 : 1'b0;
 
-assign  O_led[0] = running;
-assign  O_led[1] = ~init_calib;
+// LED indicators: LED0 = strong edge detected, LED1 = initialization status
+assign  O_led[0] = strong_edge;  // Blinks when strong edge detected
+assign  O_led[1] = ~init_calib;  // On when HyperRAM initialized
 
 assign  XCLK = clk_12M;
 
@@ -310,10 +311,19 @@ wire sobel_enable = 1'b1; // TODO: replace with a register or key control if run
 wire sobel_pixel_valid;
 wire [15:0] sobel_pixel_out;
 
+// Binarization control signals - Lower threshold: Noise filter handles cleanup
+reg [7:0] edge_threshold = 8'd70;      // LOWERED: Detect more edges, noise filter active (was 80)
+reg [1:0] threshold_mode = 2'b10;      // Hysteresis mode (best quality)
+wire binary_pixel;
+wire binary_valid;
+wire strong_edge;
+wire weak_edge;
+
 sobel_processor #(
     .IMG_WIDTH(640),
     .IMG_HEIGHT(480),
-    .PIXEL_WIDTH(8)
+    .PIXEL_WIDTH(8),
+    .USE_BILATERAL(1)            // Edge-preserving bilateral filter (keeps edges sharp, removes noise)
 ) u_sobel_processor (
     .clk(pix_clk),
     .rst_n(hdmi_rst_n),
@@ -321,11 +331,154 @@ sobel_processor #(
     .vsync(~syn_off0_vs),
     .pixel_in(off0_syn_data),
     .sobel_enable(sobel_enable),
+    .edge_threshold(edge_threshold),
+    .threshold_mode(threshold_mode),
     .pixel_valid(sobel_pixel_valid),
-    .pixel_out(sobel_pixel_out)
+    .pixel_out(sobel_pixel_out),
+    .binary_pixel(binary_pixel),
+    .binary_valid(binary_valid),
+    .strong_edge(strong_edge),
+    .weak_edge(weak_edge)
 );
 
-wire [15:0] sobel_rgb565   = sobel_pixel_valid ? sobel_pixel_out : off0_syn_data;
+// ============================================================================
+// HOUGH TRANSFORM - Line Detection (DISABLED - Too much resources)
+// ============================================================================
+// NOTE: Hough Transform requires ~196K DFFs but Tang Nano 4K only has 3612
+// To enable: uncomment below and use larger FPGA or optimize parameters
+/*
+reg [9:0] pixel_x_counter;
+reg [9:0] pixel_y_counter;
+
+always @(posedge pix_clk or negedge hdmi_rst_n) begin
+    if (!hdmi_rst_n) begin
+        pixel_x_counter <= 0;
+        pixel_y_counter <= 0;
+    end else if (off0_syn_de) begin
+        if (pixel_x_counter == 639) begin
+            pixel_x_counter <= 0;
+            if (pixel_y_counter == 479) begin
+                pixel_y_counter <= 0;
+            end else begin
+                pixel_y_counter <= pixel_y_counter + 1;
+            end
+        end else begin
+            pixel_x_counter <= pixel_x_counter + 1;
+        end
+    end else if (~syn_off0_vs) begin
+        pixel_x_counter <= 0;
+        pixel_y_counter <= 0;
+    end
+end
+
+wire hough_line_valid;
+wire [15:0] hough_line_rho;
+wire [7:0] hough_line_theta;
+wire [11:0] hough_line_votes;
+
+hough_transform #(
+    .IMG_WIDTH(640),
+    .IMG_HEIGHT(480),
+    .RHO_RESOLUTION(4),
+    .THETA_STEPS(45),
+    .ACCUMULATOR_BITS(12),
+    .MIN_VOTES(100)
+) u_hough_transform (
+    .clk(pix_clk),
+    .rst_n(hdmi_rst_n),
+    .pixel_in(binary_pixel),
+    .pixel_valid(binary_valid),
+    .pixel_x(pixel_x_counter),
+    .pixel_y(pixel_y_counter),
+    .frame_start(~syn_off0_vs),
+    .line_valid(hough_line_valid),
+    .line_rho(hough_line_rho),
+    .line_theta(hough_line_theta),
+    .line_votes(hough_line_votes)
+);
+
+wire [15:0] theta_deg = {8'd0, hough_line_theta} << 2;
+wire is_hough_indicator = (pixel_y_counter < 20) && 
+                          (pixel_x_counter < (hough_line_valid ? hough_line_votes[11:2] : 10'd0));
+*/
+
+// ============================================================================
+// LANE DETECTION - DISABLED (commented out for cleanup)
+// ============================================================================
+// Uncomment below to enable lane detection visualization
+/*
+wire lane_left_valid, lane_right_valid;
+wire [9:0] lane_left_x_top, lane_left_x_bottom;
+wire [9:0] lane_right_x_top, lane_right_x_bottom;
+wire lane_detection_done;
+
+reg [9:0] pixel_x_counter;
+reg [9:0] pixel_y_counter;
+
+always @(posedge pix_clk or negedge hdmi_rst_n) begin
+    if (!hdmi_rst_n) begin
+        pixel_x_counter <= 0;
+        pixel_y_counter <= 0;
+    end else if (off0_syn_de) begin
+        if (pixel_x_counter == 639) begin
+            pixel_x_counter <= 0;
+            if (pixel_y_counter == 479) begin
+                pixel_y_counter <= 0;
+            end else begin
+                pixel_y_counter <= pixel_y_counter + 1;
+            end
+        end else begin
+            pixel_x_counter <= pixel_x_counter + 1;
+        end
+    end else if (~syn_off0_vs) begin
+        pixel_x_counter <= 0;
+        pixel_y_counter <= 0;
+    end
+end
+
+lane_detector #(
+    .IMG_WIDTH(640),
+    .IMG_HEIGHT(480),
+    .ROI_TOP(240),
+    .ROI_BOTTOM(460)
+) u_lane_detector (
+    .clk(pix_clk),
+    .rst_n(hdmi_rst_n),
+    .pixel_in(binary_pixel),
+    .pixel_valid(binary_valid),
+    .pixel_x(pixel_x_counter),
+    .pixel_y(pixel_y_counter),
+    .frame_start(~syn_off0_vs),
+    .left_lane_valid(lane_left_valid),
+    .left_x_top(lane_left_x_top),
+    .left_x_bottom(lane_left_x_bottom),
+    .right_lane_valid(lane_right_valid),
+    .right_x_top(lane_right_x_top),
+    .right_x_bottom(lane_right_x_bottom),
+    .detection_done(lane_detection_done)
+);
+
+wire in_lane_roi = (pixel_y_counter >= 240) && (pixel_y_counter <= 460);
+wire is_left_lane_pixel = lane_left_valid && in_lane_roi &&
+                          (pixel_x_counter >= lane_left_x_top - 3) && 
+                          (pixel_x_counter <= lane_left_x_top + 3);
+wire is_right_lane_pixel = lane_right_valid && in_lane_roi &&
+                           (pixel_x_counter >= lane_right_x_top - 3) && 
+                           (pixel_x_counter <= lane_right_x_top + 3);
+wire is_roi_top = (pixel_y_counter == 240);
+wire is_roi_bottom = (pixel_y_counter == 460);
+wire is_roi_middle = (pixel_x_counter == 320);
+
+wire [15:0] binary_rgb565  = is_left_lane_pixel ? 16'hF800 :
+                             is_right_lane_pixel ? 16'h07E0 :
+                             (is_roi_top || is_roi_bottom) ? 16'h001F :
+                             is_roi_middle ? 16'hFFE0 :
+                             binary_pixel ? 16'hFFFF : 16'h0000;
+*/
+
+// Display edges directly from binarization module - rely on Hysteresis for quality
+wire [15:0] binary_rgb565  = binary_pixel ? 16'hFFFF : 16'h0000;  // White edges, black background
+wire [15:0] sobel_rgb565   = sobel_pixel_valid ? (binary_valid ? binary_rgb565 : sobel_pixel_out) : off0_syn_data;
 wire [15:0] display_rgb565 = sobel_enable ? sobel_rgb565 : off0_syn_data;
 wire [23:0] display_rgb888 = {
     display_rgb565[15:11], 3'b000,

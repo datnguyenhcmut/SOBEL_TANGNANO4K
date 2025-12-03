@@ -1,0 +1,64 @@
+# Makefile for Hough Transform Testbench
+# Author: Nguyễn Văn Đạt
+# Date: 2025-12-02
+
+# Simulator
+IVERILOG = iverilog
+VVP = vvp
+GTKWAVE = gtkwave
+
+# Directories
+VERILOG_DIR = ../verilog/sobel
+
+# Source files
+SOURCES = \
+	$(VERILOG_DIR)/hough_transform.v
+
+# Testbench
+TB = tb_hough_transform.sv
+
+# Output
+SIM_OUT = sim_hough
+VCD = tb_hough.vcd
+
+# Default target
+all: compile run
+
+# Compile testbench
+compile: $(SOURCES) $(TB)
+	@echo "Compiling Hough Transform testbench..."
+	$(IVERILOG) -g2012 -o $(SIM_OUT) $(TB) $(SOURCES)
+	@echo "Compilation successful"
+
+# Run simulation
+run: $(SIM_OUT)
+	@echo "Running Hough Transform test..."
+	$(VVP) $(SIM_OUT)
+	@echo "Test complete"
+
+# View waveforms
+wave: $(VCD)
+	@echo "Opening waveform viewer..."
+	$(GTKWAVE) $(VCD)
+
+# Full test
+test: compile run
+
+# Clean
+clean:
+	@echo "Cleaning..."
+	rm -f $(SIM_OUT) $(VCD)
+	rm -f *.vcd *.log
+	@echo "Clean complete"
+
+# Help
+help:
+	@echo "Makefile targets:"
+	@echo "  make compile   - Compile testbench"
+	@echo "  make run       - Run simulation"
+	@echo "  make wave      - View waveforms"
+	@echo "  make test      - Full test (compile + run)"
+	@echo "  make clean     - Remove simulation files"
+	@echo "  make help      - Show this help"
+
+.PHONY: all compile run wave test clean help

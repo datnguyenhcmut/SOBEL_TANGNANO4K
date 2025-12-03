@@ -58,6 +58,7 @@ table.detail_table td.label { min-width: 100px; width: 8%;}
 <td>D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bram.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\edge_mag.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\gaussian_blur.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\image_binarization.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\line_buffer.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\rgb_to_gray.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\sobel_kernel.v<br>
@@ -73,10 +74,16 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\I2C_Interface.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Controller.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\ov2640\OV2640_Registers.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\syn_code\syn_gen.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\testpattern.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_frame_buffer\video_frame_buffer.v<br>
 D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\video_top.v<br>
-D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\bilateral_filter.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\morphological_filter.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\binary_line_buffer.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\noise_rejection_filter.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\lane_detector.v<br>
+D:\tangnano4k\SOBEL_TANGNANO4K\verilog\sobel\hough_transform.v<br>
 </td>
 </tr>
 <tr>
@@ -97,7 +104,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov 17 18:41:55 2025
+<td>Tue Dec  2 16:27:39 2025
 </td>
 </tr>
 <tr>
@@ -113,11 +120,11 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">Synthesis Process</td>
-<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.906s, Elapsed time = 0h 0m 1s, Peak memory usage = 221.727MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0.218s, Elapsed time = 0h 0m 0.242s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.296s, Elapsed time = 0h 0m 0.308s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0.312s, Elapsed time = 0h 0m 0.333s, Peak memory usage = 221.727MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0.437s, Elapsed time = 0h 0m 0.558s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.053s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.035s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.025s, Peak memory usage = 221.727MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0.218s, Elapsed time = 0h 0m 0.232s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.078s, Elapsed time = 0h 0m 0.083s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.046s, Elapsed time = 0h 0m 0.043s, Peak memory usage = 221.727MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 2s, Peak memory usage = 244.434MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0.218s, Elapsed time = 0h 0m 0.354s, Peak memory usage = 245.645MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.312s, Elapsed time = 0h 0m 0.45s, Peak memory usage = 245.645MB<br/></td>
+<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.718s, Elapsed time = 0h 0m 0.629s, Peak memory usage = 360.453MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0.156s, Elapsed time = 0h 0m 0.157s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0.203s, Elapsed time = 0h 0m 0.221s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0.25s, Elapsed time = 0h 0m 0.246s, Peak memory usage = 360.453MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0.343s, Elapsed time = 0h 0m 0.342s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.044s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.02s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0.015s, Elapsed time = 0h 0m 0.016s, Peak memory usage = 360.453MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0.234s, Elapsed time = 0h 0m 0.231s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0.062s, Elapsed time = 0h 0m 0.065s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0.031s, Elapsed time = 0h 0m 0.033s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s, Peak memory usage = 360.453MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0.234s, Elapsed time = 0h 0m 0.245s, Peak memory usage = 360.453MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.265s, Elapsed time = 0h 0m 0.299s, Peak memory usage = 360.453MB<br/></td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 4s, Elapsed time = 0h 0m 5s, Peak memory usage = 245.645MB</td>
+<td>CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s, Peak memory usage = 360.453MB</td>
 </tr>
 </table>
 <h1><a name="resource">Resource</a></h1>
@@ -161,7 +168,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label"><b>Register </b></td>
-<td>1463</td>
+<td>1479</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFF</td>
@@ -169,7 +176,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFE</td>
-<td>48</td>
+<td>78</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFS</td>
@@ -193,11 +200,11 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFC</td>
-<td>777</td>
+<td>757</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFCE</td>
-<td>522</td>
+<td>528</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspDFFNP</td>
@@ -205,27 +212,27 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label"><b>LUT </b></td>
-<td>1800</td>
+<td>1746</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT2</td>
-<td>575</td>
+<td>568</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT3</td>
-<td>437</td>
+<td>427</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspLUT4</td>
-<td>788</td>
+<td>751</td>
 </tr>
 <tr>
 <td class="label"><b>ALU </b></td>
-<td>413</td>
+<td>434</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspALU</td>
-<td>413</td>
+<td>434</td>
 </tr>
 <tr>
 <td class="label"><b>INV </b></td>
@@ -261,7 +268,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspMULTADDALU18X18</td>
-<td>2</td>
+<td>4</td>
 </tr>
 <tr>
 <td class="label"><b>BSRAM </b></td>
@@ -305,12 +312,12 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>2236(1823 LUT, 413 ALU) / 4608</td>
-<td>49%</td>
+<td>2203(1769 LUT, 434 ALU) / 4608</td>
+<td>48%</td>
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>1463 / 3612</td>
+<td>1479 / 3612</td>
 <td>41%</td>
 </tr>
 <tr>
@@ -320,7 +327,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as FF</td>
-<td>1463 / 3612</td>
+<td>1479 / 3612</td>
 <td>41%</td>
 </tr>
 <tr>
@@ -596,7 +603,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -823,7 +830,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -920,7 +927,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1115,7 +1122,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1174,7 +1181,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">From</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0</td>
 </tr>
 <tr>
 <td class="label">To</td>
@@ -1212,7 +1219,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1221,7 +1228,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0/CLK</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0/CLK</td>
 </tr>
 <tr>
 <td>1.911</td>
@@ -1229,7 +1236,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>tC2Q</td>
 <td>RF</td>
 <td>2</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0/Q</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0/Q</td>
 </tr>
 <tr>
 <td>2.871</td>
@@ -1404,7 +1411,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.563</td>
 <td>tINS</td>
 <td>FF</td>
-<td>1</td>
+<td>25</td>
 <td>u_sobel_processor/u_sobel/gy_result_10_s/SUM</td>
 </tr>
 <tr>
@@ -1439,7 +1446,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1498,7 +1505,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 </tr>
 <tr>
 <td class="label">From</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0</td>
 </tr>
 <tr>
 <td class="label">To</td>
@@ -1536,7 +1543,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1545,7 +1552,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>tNET</td>
 <td>RR</td>
 <td>1</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0/CLK</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0/CLK</td>
 </tr>
 <tr>
 <td>1.911</td>
@@ -1553,7 +1560,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>tC2Q</td>
 <td>RF</td>
 <td>2</td>
-<td>u_sobel_processor/u_gaussian/window_blurred_3_s0/Q</td>
+<td>u_sobel_processor/u_bilateral/window_filtered_3_s0/Q</td>
 </tr>
 <tr>
 <td>2.871</td>
@@ -1728,7 +1735,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.563</td>
 <td>tINS</td>
 <td>FF</td>
-<td>1</td>
+<td>25</td>
 <td>u_sobel_processor/u_sobel/gx_result_10_s0/SUM</td>
 </tr>
 <tr>
@@ -1763,7 +1770,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -1860,7 +1867,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>
@@ -2055,7 +2062,7 @@ D:\tangnano4k\SOBEL_TANGNANO4K\verilog\src\system_top.v<br>
 <td>0.727</td>
 <td>tCL</td>
 <td>RR</td>
-<td>509</td>
+<td>552</td>
 <td>u_clkdiv/CLKOUT</td>
 </tr>
 <tr>

@@ -8,6 +8,7 @@
 // Date: 2025
 // Target: Tang Nano 4K (GW1NSR-LV4C)
 //==============================================================================
+
 module system_top (
     input  wire        sys_clk,        // 27MHz system clock
     input  wire        sys_resetn,     // Active-low reset button

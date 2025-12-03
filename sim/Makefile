@@ -97,6 +97,14 @@ msim-gui-bin:
 	@echo "=== ModelSim GUI: Binarization ==="
 	vsim -gui -do run_binarization_modelsim.do
 
+msim-hough:
+	@echo "=== ModelSim: Hough Transform test ==="
+	vsim -c -do "do run_hough_modelsim.do; quit -f"
+
+msim-hough-gui:
+	@echo "=== ModelSim GUI: Hough Transform ==="
+	vsim -gui -do run_hough_modelsim.do
+
 clean:
 	powershell -NoLogo -NoProfile -Command "Remove-Item -Force -ErrorAction SilentlyContinue '$(SIM_OUT)','sim_random.vvp','sim_golden.vvp','$(VCD_OUT)','$(VIDEO_SIM)','$(VIDEO_IN_RGB)','$(VIDEO_META)','$(VIDEO_OUT_RGB)','$(VIDEO_REPORT)','$(VIDEO_DIFF)','work','*.wlf','transcript'"
 
@@ -119,8 +127,10 @@ help:
 	@echo "make msim-random         - ModelSim random test (batch)"
 	@echo "make msim-golden         - ModelSim golden test (batch)"
 	@echo "make msim-binarization   - ModelSim binarization test (batch)"
+	@echo "make msim-hough          - ModelSim Hough Transform test (batch)"
 	@echo "make msim-gui            - ModelSim GUI mode"
 	@echo "make msim-gui-bin        - ModelSim GUI binarization test"
+	@echo "make msim-hough-gui      - ModelSim GUI Hough Transform test"
 	@echo ""
 	@echo "=== Utilities ==="
 	@echo "make clean   - clean up"

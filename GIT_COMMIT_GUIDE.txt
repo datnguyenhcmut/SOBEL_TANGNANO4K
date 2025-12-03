@@ -1,0 +1,45 @@
+﻿# Git Commit Checklist
+
+## Files đã dọn dẹp (deleted):
+ sim/vsim.wlf - ModelSim waveform temp
+ sim/work/ - ModelSim compiled library  
+ docs/sobel_architecture_diagram.log - LaTeX temp
+ verilog/impl/gwsynthesis/camera_hdmi.log - Synthesis log
+ verilog/impl/pnr/camera_hdmi.log - P&R log
+ sim/sim_random.log - Test log
+ sim/tmp_analyze.py - Temp script
+
+## Files mới/cập nhật:
+ .gitignore - Cấu hình loại trừ file temp
+ docs/email_bao_cao.txt - Email template
+ docs/email_bao_cao_ngan.txt - Email ngắn gọn
+ docs/image_binarization_report.tex - Báo cáo đầy đủ
+
+## Lệnh git để commit:
+
+# Stage tất cả changes
+git add -A
+
+# Commit với message rõ ràng
+git commit -m "docs: Add comprehensive Image Binarization & Hough Transform report
+
+- Add detailed LaTeX report with TikZ diagrams
+- Include test results and validation logs  
+- Add email templates for submission
+- Clean up temporary files (.log, .wlf, work/)
+- Update .gitignore for better project hygiene
+
+Modules documented:
+- Image Binarization (3 methods + Shadow Filter)
+- Hough Transform (validated, pending larger FPGA)
+- Test methodology (Python + ModelSim)
+- Resource analysis and constraints
+"
+
+# Push lên GitHub
+git push origin main
+
+## Notes:
+- Đã backup README.md cũ (nếu cần)
+- Báo cáo PDF cần compile riêng (pdflatex)
+- Test images/videos không push (quá lớn, đã trong .gitignore)
